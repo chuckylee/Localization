@@ -1,7 +1,8 @@
 {
   "name": "TraningApp",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
