@@ -7,11 +7,12 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-button color="primary" (click)="getNetworks()">Get Networks</ion-button>
+  <ion-button color="primary" (click)="click()">Get Networks</ion-button>
   {{info_txt}}
   <ion-list>
     <ion-item *ngFor="let data of results">
       {{data.SSID}} - {{data.BSSID}} - {{data.level}}
     </ion-item>
+    <ion-item>{{count}}</ion-item>
   </ion-list>
 </ion-content>

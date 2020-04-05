@@ -8,8 +8,26 @@ declare var WifiWizard: any;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  count = 0;
   results = [];
   info_txt = '';
+
+  ngOnInit() {}
+
+  setDelay(i) {
+    setTimeout(() => {
+      console.log(i);
+      this.count++;
+      this.getNetworks();
+    }, 5000 * i);
+  }
+
+  click() {
+    for (let i = 1; i <= 10; ++i) {
+      this.setDelay(i);
+    }
+  }
+
   async getNetworks() {
     this.info_txt = 'loading...';
     try {
