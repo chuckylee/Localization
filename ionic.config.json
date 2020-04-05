@@ -1,7 +1,0 @@
-{
-  "name": "TraningApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
