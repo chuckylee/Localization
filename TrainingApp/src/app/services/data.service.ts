@@ -10,8 +10,9 @@ import { Observable } from 'rxjs';
 
 export interface Data {
   id?: string;
-  name: string;
-  notes: string;
+  name: string[];
+  bssid: string[];
+  // level: string[][];
 }
 
 @Injectable({
@@ -55,13 +56,13 @@ export class DataService {
     return this.ideaCollection.add(idea);
   }
 
-  updateIdea(idea: Data): Promise<void> {
-    return this.ideaCollection
-      .doc(idea.id)
-      .update({ name: idea.name, notes: idea.notes });
-  }
+  // updateIdea(idea: Data): Promise<void> {
+  //   return this.ideaCollection
+  //     .doc(idea.id)
+  //     .update({ name: idea.name, notes: idea.notes });
+  // }
 
-  deleteIdea(id: string): Promise<void> {
-    return this.ideaCollection.doc(id).delete();
-  }
+  // deleteIdea(id: string): Promise<void> {
+  //   return this.ideaCollection.doc(id).delete();
+  // }
 }
