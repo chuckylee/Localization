@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      List Wifi AP
+      Training Application
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,7 @@
   <ion-input [(ngModel)]="idea.location[0]"></ion-input>
   <ion-label position="stacked">Location_Y</ion-label>
   <ion-input [(ngModel)]="idea.location[1]"></ion-input>
-  <ion-button color="primary" (click)="click()">Get Networks</ion-button>
+
   {{info_txt}}
   <ion-list>
     <ion-item>{{count}}</ion-item>
@@ -19,32 +19,13 @@
       {{data.SSID}} - {{data.BSSID}} - {{data.level}}
     </ion-item>
   </ion-list>
-
-  <!-- <ion-item>
-    <ion-label position="stacked">Name</ion-label>
-    <ion-input [(ngModel)]="idea.name"></ion-input>
-  </ion-item> -->
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="success">
-    <ion-button expand="full" fill="clear" color="light" (click)="print()">
+    <ion-button expand="full" fill="clear" color="light" (click)="click()">
       <ion-icon name="checkmark" slot="start"></ion-icon>
-      Print
-    </ion-button>
-  </ion-toolbar>
-
-  <ion-toolbar color="success">
-    <ion-button expand="full" fill="clear" color="light" (click)="addIdea()">
-      <ion-icon name="checkmark" slot="start"></ion-icon>
-      Add Idea
-    </ion-button>
-  </ion-toolbar>
-
-  <ion-toolbar color="success">
-    <ion-button expand="full" fill="clear" color="light" (click)="caculator()">
-      <ion-icon name="checkmark" slot="start"></ion-icon>
-      caculator
+      Start Scaning
     </ion-button>
   </ion-toolbar>
 </ion-footer>

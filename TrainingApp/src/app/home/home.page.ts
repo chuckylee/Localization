@@ -1,141 +1,9 @@
 import { Component } from '@angular/core';
 import { DataService, Data } from 'src/app/services/data.service';
+import { AlertController } from '@ionic/angular';
 
 declare var WifiWizard2: any;
-// const fakeData = [
-//   {
-//     id: 0,
-//     info: [
-//       {
-//         name: 'wifi_1',
-//         bssid: 'bssid_1',
-//         level: '1',
-//       },
-//       {
-//         name: 'wifi_1',
-//         bssid: 'bssid_12',
-//         level: '2',
-//       },
-//       {
-//         name: 'wifi_2',
-//         bssid: 'bssid_2',
-//         level: '3',
-//       },
-//       {
-//         name: 'wifi_3',
-//         bssid: 'bssid_3',
-//         level: '3',
-//       },
-//       {
-//         name: 'wifi_4',
-//         bssid: 'bssid_4',
-//         level: '4',
-//       },
-//     ],
-//   },
-//   {
-//     id: 1,
-//     info: [
-//       {
-//         name: 'wifi_1',
-//         bssid: 'bssid_12',
-//         level: '4',
-//       },
-//       {
-//         name: 'wifi_1',
-//         bssid: 'bssid_1',
-//         level: '23',
-//       },
 
-//       {
-//         name: 'wifi_2',
-//         bssid: 'bssid_2',
-//         level: '3',
-//       },
-//       {
-//         name: 'wifi_2',
-//         bssid: 'bssid_22',
-//         level: '33',
-//       },
-//       {
-//         name: 'wifi_4',
-//         bssid: 'bssid_4',
-//         level: '4',
-//       },
-//       {
-//         name: 'wifi_5',
-//         bssid: 'bssid_5',
-//         level: '5',
-//       },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     info: [
-//       {
-//         name: 'wifi_5',
-//         bssid: 'bssid_5',
-//         level: '8',
-//       },
-//       {
-//         name: 'wifi_2',
-//         bssid: 'bssid_22',
-//         level: '3',
-//       },
-//       {
-//         name: 'wifi_2',
-//         bssid: 'bssid_23',
-//         level: '1',
-//       },
-//       {
-//         name: 'wifi_1',
-//         bssid: 'bssid_1',
-//         level: '3',
-//       },
-//       {
-//         name: 'wifi_4',
-//         bssid: 'bssid_4',
-//         level: '24',
-//       },
-//       {
-//         name: 'wifi_3',
-//         bssid: 'bssid_3',
-//         level: '11',
-//       },
-//       {
-//         name: 'wifi_6',
-//         bssid: 'bssid_6',
-//         level: '3',
-//       },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     info: [
-//       {
-//         name: 'wifi1',
-//         bssid: 'bssid1',
-//         level: '123',
-//       },
-//       {
-//         name: 'wifi1',
-//         bssid: 'bssid12',
-//         level: '224',
-//       },
-
-//       {
-//         name: 'wifi4',
-//         bssid: 'bssid4',
-//         level: '244',
-//       },
-//       {
-//         name: 'wifi5',
-//         bssid: 'bssid5',
-//         level: '245',
-//       },
-//     ],
-//   },
-// ];
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -145,98 +13,6 @@ export class HomePage {
   array_name: string[] = [];
   array_bssid: string[] = [];
   array_level: number[][] = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ];
-  clear_bssid: string[] = [];
-  clear_level: string[][] = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ];
-
-  num_level: number[][] = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ];
-  count_level: number[][] = [
     [],
     [],
     [],
@@ -300,7 +76,6 @@ export class HomePage {
     [],
   ];
   RSS_final: number[] = [];
-
   arr: number[][] = [
     [-60, -61, -62, -66, -62, -66, -70, -70, -70],
     [-54, -54, -54, -54, -54],
@@ -309,8 +84,6 @@ export class HomePage {
     [-88, -91],
     [-89, -89],
   ];
-
-  // fakeData = fakeData[0].info;
 
   id = 0;
   count = 0;
@@ -325,29 +98,57 @@ export class HomePage {
     level: [],
   };
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    public alertController: AlertController
+  ) {}
   ngOnInit() {}
 
+  async UpdateDatabaseSuccess() {
+    const alert = await this.alertController.create({
+      header: 'Update Success',
+    });
+
+    await alert.present();
+  }
+
+  async UpdateDatabaseFail() {
+    const alert = await this.alertController.create({
+      header: 'Update Fail',
+    });
+
+    await alert.present();
+  }
   addIdea() {
     this.dataService.addIdea(this.idea).then(
       () => {
+        this.UpdateDatabaseSuccess();
         console.log('Idea added');
       },
       (err) => {
+        this.UpdateDatabaseFail();
         console.log('There was a problem adding your idea :(');
       }
     );
   }
   setDelay(i) {
     setTimeout(() => {
-      this.getNetworks();
-      this.count++;
-      this.id++;
+      if (i < 11) {
+        this.count++;
+        this.id++;
+        this.getNetworks();
+      } else if (i == 11) {
+        this.caculator();
+        this.print();
+      } else if (i == 12) {
+        this.addIdea();
+        this.clearData();
+      }
     }, 5000 * i);
   }
 
   click() {
-    for (let i = 1; i <= 10; ++i) {
+    for (let i = 1; i <= 12; ++i) {
       this.setDelay(i);
     }
   }
@@ -357,13 +158,18 @@ export class HomePage {
     try {
       let results = await WifiWizard2.scan();
       for (let item of results) {
-        let level = parseInt(item.level);
-        // console.log('name: ', item.SSID);
-        // console.log('bssid: ', item.BSSID);
-        // console.log('level: ', item.level);
-        this.formatData(item.SSID, item.BSSID, level);
+        if (
+          !item.SSID.localeCompare('Le Duc Thanh') ||
+          !item.SSID.localeCompare('DaiDuong1') ||
+          !item.SSID.localeCompare('Nhat Quynh') ||
+          !item.SSID.localeCompare('Tang tret')
+        ) {
+          let level = parseInt(item.level);
+          this.formatData(item.SSID, item.BSSID, level);
+          this.results = results;
+        }
       }
-      this.results = results;
+
       this.info_txt = '';
     } catch (error) {
       this.info_txt = error;
@@ -371,11 +177,11 @@ export class HomePage {
   }
 
   print() {
-    // this.id++;
     console.log('----------------------');
     let name_lenght = this.array_bssid.length;
     for (let i = 0; i < name_lenght; i++) {
       console.log(
+        'Real Data:  ',
         this.array_name[i] +
           '  ' +
           this.array_bssid[i] +
@@ -565,5 +371,78 @@ export class HomePage {
     this.idea.name = this.array_name;
     this.idea.bssid = this.array_bssid;
     this.idea.level = this.RSS_final;
+  }
+
+  clearData() {
+    this.id = 0;
+    this.count = 0;
+    this.countLevel = 0;
+    this.array_name = [];
+    this.array_bssid = [];
+    this.array_level = [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+    ];
+    this.sum = [];
+    this.y = [];
+    this.o = [];
+    this.RSS = [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+    ];
+    this.RSS_final = [];
+    console.log('CLEAR DONE');
   }
 }
