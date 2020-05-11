@@ -158,16 +158,16 @@ export class HomePage {
     try {
       let results = await WifiWizard2.scan();
       for (let item of results) {
-        if (
-          !item.SSID.localeCompare('Le Duc Thanh') ||
-          !item.SSID.localeCompare('DaiDuong1') ||
-          !item.SSID.localeCompare('Nhat Quynh') ||
-          !item.SSID.localeCompare('Tang tret')
-        ) {
-          let level = parseInt(item.level);
-          this.formatData(item.SSID, item.BSSID, level);
-          this.results = results;
-        }
+        // if (
+        //   !item.SSID.localeCompare('Le Duc Thanh') ||
+        //   !item.SSID.localeCompare('DaiDuong1') ||
+        //   !item.SSID.localeCompare('Nhat Quynh') ||
+        //   !item.SSID.localeCompare('Tang tret')
+        // ) {
+        let level = parseInt(item.level);
+        this.formatData(item.SSID, item.BSSID, level);
+        this.results = results;
+        // }
       }
 
       this.info_txt = '';

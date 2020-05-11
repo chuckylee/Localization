@@ -3,17 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  firebaseConfig: {
-    apiKey: 'AIzaSyC2ECWTQRW3HHDH0_lvX180molFhz7Iglo',
-    authDomain: 'newtraingdata.firebaseapp.com',
-    databaseURL: 'https://newtraingdata.firebaseio.com',
-    projectId: 'newtraingdata',
-    storageBucket: 'newtraingdata.appspot.com',
-    messagingSenderId: '163551995676',
-    appId: '1:163551995676:web:8cae1655741f0eb6587cd9',
-    measurementId: 'G-GTCJ1Z4XG3',
-  },
+  production: false
 };
 
 /*
