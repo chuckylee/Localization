@@ -10,9 +10,9 @@ declare var WifiWizard2: any;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  array_name: string[] = [];
-  array_bssid: string[] = [];
-  array_level: number[][] = [
+  arrayName: string[] = [];
+  arrayBssid: string[] = [];
+  arrayLevel: number[][] = [
     [],
     [],
     [],
@@ -75,7 +75,7 @@ export class HomePage {
     [],
     [],
   ];
-  RSS_final: number[] = [];
+  RSSFinal: number[] = [];
   arr: number[][] = [
     [-60, -61, -62, -66, -62, -66, -70, -70, -70],
     [-54, -54, -54, -54, -54],
@@ -89,7 +89,7 @@ export class HomePage {
   count = 0;
   countLevel = 0;
   results = [];
-  info_txt = '';
+  infoTxt = '';
 
   idea: Data = {
     name: [],
@@ -102,7 +102,6 @@ export class HomePage {
     private dataService: DataService,
     public alertController: AlertController
   ) {}
-  ngOnInit() {}
 
   async UpdateDatabaseSuccess() {
     const alert = await this.alertController.create({
@@ -137,10 +136,10 @@ export class HomePage {
         this.count++;
         this.id++;
         this.getNetworks();
-      } else if (i == 11) {
+      } else if (i === 11) {
         this.caculator();
         this.print();
-      } else if (i == 12) {
+      } else if (i === 12) {
         this.addIdea();
         this.clearData();
       }
@@ -154,41 +153,45 @@ export class HomePage {
   }
 
   async getNetworks() {
-    this.info_txt = 'loading...';
+    this.infoTxt = 'loading...';
     try {
+      // tslint:disable-next-line:prefer-const
       let results = await WifiWizard2.scan();
+      // tslint:disable-next-line:prefer-const
       for (let item of results) {
-        // if (
-        //   !item.SSID.localeCompare('Le Duc Thanh') ||
-        //   !item.SSID.localeCompare('DaiDuong1') ||
-        //   !item.SSID.localeCompare('Nhat Quynh') ||
-        //   !item.SSID.localeCompare('Tang tret')
-        // ) {
-        let level = parseInt(item.level);
-        this.formatData(item.SSID, item.BSSID, level);
-        this.results = results;
-        // }
+        if (
+          !item.SSID.localeCompare('Le Duc Thanh') ||
+          !item.SSID.localeCompare('DaiDuong1') ||
+          !item.SSID.localeCompare('Nhat Quynh') ||
+          !item.SSID.localeCompare('Tang tret')
+        ) {
+          // tslint:disable-next-line:prefer-const
+          let level = parseInt(item.level);
+          this.formatData(item.SSID, item.BSSID, level);
+          this.results = results;
+        }
       }
 
-      this.info_txt = '';
+      this.infoTxt = '';
     } catch (error) {
-      this.info_txt = error;
+      this.infoTxt = error;
     }
   }
 
   print() {
     console.log('----------------------');
-    let name_lenght = this.array_bssid.length;
-    for (let i = 0; i < name_lenght; i++) {
+    // tslint:disable-next-line:prefer-const
+    let nameLenght = this.arrayBssid.length;
+    for (let i = 0; i < nameLenght; i++) {
       console.log(
         'Real Data:  ',
-        this.array_name[i] +
+        this.arrayName[i] +
           '  ' +
-          this.array_bssid[i] +
+          this.arrayBssid[i] +
           '  ' +
-          this.RSS_final[i] +
+          this.RSSFinal[i] +
           '   [' +
-          this.array_level[i] +
+          this.arrayLevel[i] +
           ']'
       );
     }
@@ -197,30 +200,32 @@ export class HomePage {
     console.log('y', this.y);
     console.log('o', this.o);
     console.log('RSS', this.RSS);
-    console.log('RSS_final', this.RSS_final);
+    console.log('RSSFinal', this.RSSFinal);
   }
 
   formatData(name: string, bssid: string, level: number) {
-    if (this.id == 1) {
-      this.array_name.push(name);
-      this.array_bssid.push(bssid);
-      this.array_level[this.countLevel].push(level);
+    if (this.id === 1) {
+      this.arrayName.push(name);
+      this.arrayBssid.push(bssid);
+      this.arrayLevel[this.countLevel].push(level);
       this.countLevel++;
     } else {
-      let bssid_current = this.array_bssid.length;
+      // tslint:disable-next-line:prefer-const
+      let bssidCurrent = this.arrayBssid.length;
       let check = true;
-      for (let i = 0; i < bssid_current; i++) {
-        if (!bssid.localeCompare(this.array_bssid[i])) {
-          this.array_level[i].push(level);
+      for (let i = 0; i < bssidCurrent; i++) {
+        if (!bssid.localeCompare(this.arrayBssid[i])) {
+          this.arrayLevel[i].push(level);
           check = false;
           break;
         }
       }
-      if (check == true) {
-        this.array_name.push(name);
-        let k = this.array_name.length;
-        this.array_bssid.push(bssid);
-        this.array_level[k - 1].push(level);
+      if (check === true) {
+        this.arrayName.push(name);
+        // tslint:disable-next-line:prefer-const
+        let k = this.arrayName.length;
+        this.arrayBssid.push(bssid);
+        this.arrayLevel[k - 1].push(level);
       }
     }
   }
@@ -277,71 +282,75 @@ export class HomePage {
 
   //   for (let i = 0; i < this.RSS.length; i++) {
   //     for (let j = 0; j < this.RSS[i].length; j++) {
-  //       if (this.RSS_final[i] == null) {
-  //         this.RSS_final[i] = this.RSS[i][j];
+  //       if (this.RSSFinal[i] == null) {
+  //         this.RSSFinal[i] = this.RSS[i][j];
   //       } else {
-  //         this.RSS_final[i] = this.RSS_final[i] + this.RSS[i][j];
+  //         this.RSSFinal[i] = this.RSSFinal[i] + this.RSS[i][j];
   //       }
   //     }
-  //     this.RSS_final[i] = this.RSS_final[i] / this.RSS[i].length;
+  //     this.RSSFinal[i] = this.RSSFinal[i] / this.RSS[i].length;
   //   }
 
   //   for (let i = 0; i < this.arr.length; i++) {
   //     if (this.o[i] == 0) {
-  //       this.RSS_final[i] = this.arr[i][0];
+  //       this.RSSFinal[i] = this.arr[i][0];
   //     }
   //     if (this.arr[i].length == 1) {
-  //       this.RSS_final[i] = this.arr[i][0];
+  //       this.RSSFinal[i] = this.arr[i][0];
   //     }
   //   }
   // }
 
   caculator() {
-    for (let i = 0; i < this.array_bssid.length; i++) {
-      for (let j = 0; j < this.array_level[i].length; j++) {
+    for (let i = 0; i < this.arrayBssid.length; i++) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < this.arrayLevel[i].length; j++) {
         if (this.sum[i] == null) {
-          this.sum[i] = this.array_level[i][j];
+          this.sum[i] = this.arrayLevel[i][j];
         } else {
-          this.sum[i] = this.sum[i] + this.array_level[i][j];
+          this.sum[i] = this.sum[i] + this.arrayLevel[i][j];
         }
       }
-      this.y[i] = this.sum[i] / this.array_level[i].length;
+      this.y[i] = this.sum[i] / this.arrayLevel[i].length;
     }
 
-    for (let i = 0; i < this.array_bssid.length; i++) {
-      for (let j = 0; j < this.array_level[i].length; j++) {
+    for (let i = 0; i < this.arrayBssid.length; i++) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < this.arrayLevel[i].length; j++) {
         if (this.o[i] == null) {
           this.o[i] =
-            (this.array_level[i][j] - this.y[i]) *
-            (this.array_level[i][j] - this.y[i]);
+            (this.arrayLevel[i][j] - this.y[i]) *
+            (this.arrayLevel[i][j] - this.y[i]);
         } else {
           this.o[i] =
             this.o[i] +
-            (this.array_level[i][j] - this.y[i]) *
-              (this.array_level[i][j] - this.y[i]);
+            (this.arrayLevel[i][j] - this.y[i]) *
+              (this.arrayLevel[i][j] - this.y[i]);
         }
       }
-      this.o[i] = Math.sqrt(this.o[i] / (this.array_level[i].length - 1));
+      this.o[i] = Math.sqrt(this.o[i] / (this.arrayLevel[i].length - 1));
     }
 
-    for (let i = 0; i < this.array_bssid.length; i++) {
-      for (let j = 0; j < this.array_level[i].length; j++) {
+    for (let i = 0; i < this.arrayBssid.length; i++) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < this.arrayLevel[i].length; j++) {
         if (
-          this.array_level[i][j] > this.y[i] - this.o[i] &&
-          this.array_level[i][j] < this.y[i] + this.o[i]
+          this.arrayLevel[i][j] > this.y[i] - this.o[i] &&
+          this.arrayLevel[i][j] < this.y[i] + this.o[i]
         ) {
           if (this.RSS[i][0] == null) {
-            this.RSS[i][0] = this.array_level[i][j];
+            this.RSS[i][0] = this.arrayLevel[i][j];
           } else {
             let check = false;
+            // tslint:disable-next-line:prefer-for-of
             for (let k = 0; k < this.RSS[i].length; k++) {
-              if (this.RSS[i][k] == this.array_level[i][j]) {
+              if (this.RSS[i][k] === this.arrayLevel[i][j]) {
                 check = true;
                 break;
               }
             }
-            if (check == false) {
-              this.RSS[i].push(this.array_level[i][j]);
+            if (check === false) {
+              this.RSS[i].push(this.arrayLevel[i][j]);
             }
           }
         }
@@ -349,37 +358,38 @@ export class HomePage {
     }
 
     for (let i = 0; i < this.RSS.length; i++) {
+      // tslint:disable-next-line:prefer-for-of
       for (let j = 0; j < this.RSS[i].length; j++) {
-        if (this.RSS_final[i] == null) {
-          this.RSS_final[i] = this.RSS[i][j];
+        if (this.RSSFinal[i] == null) {
+          this.RSSFinal[i] = this.RSS[i][j];
         } else {
-          this.RSS_final[i] = this.RSS_final[i] + this.RSS[i][j];
+          this.RSSFinal[i] = this.RSSFinal[i] + this.RSS[i][j];
         }
       }
-      this.RSS_final[i] = this.RSS_final[i] / this.RSS[i].length;
+      this.RSSFinal[i] = this.RSSFinal[i] / this.RSS[i].length;
     }
 
-    for (let i = 0; i < this.array_bssid.length; i++) {
-      if (this.o[i] == 0) {
-        this.RSS_final[i] = this.array_level[i][0];
+    for (let i = 0; i < this.arrayBssid.length; i++) {
+      if (this.o[i] === 0) {
+        this.RSSFinal[i] = this.arrayLevel[i][0];
       }
-      if (this.array_level[i].length == 1) {
-        this.RSS_final[i] = this.array_level[i][0];
+      if (this.arrayLevel[i].length === 1) {
+        this.RSSFinal[i] = this.arrayLevel[i][0];
       }
     }
 
-    this.idea.name = this.array_name;
-    this.idea.bssid = this.array_bssid;
-    this.idea.level = this.RSS_final;
+    this.idea.name = this.arrayName;
+    this.idea.bssid = this.arrayBssid;
+    this.idea.level = this.RSSFinal;
   }
 
   clearData() {
     this.id = 0;
     this.count = 0;
     this.countLevel = 0;
-    this.array_name = [];
-    this.array_bssid = [];
-    this.array_level = [
+    this.arrayName = [];
+    this.arrayBssid = [];
+    this.arrayLevel = [
       [],
       [],
       [],
@@ -442,7 +452,7 @@ export class HomePage {
       [],
       [],
     ];
-    this.RSS_final = [];
+    this.RSSFinal = [];
     console.log('CLEAR DONE');
   }
 }

@@ -1,20 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- <ion-button color="primary" (click)="click()">Get Networks</ion-button>
+  {{infoTxt}}
+  <ion-list>
+    <ion-item *ngFor="let data of location">
+      {{data}}
+    </ion-item>
+  </ion-list> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <canvas class="canvas" width="1000" height="600" #canvas></canvas>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          x:
+        </ion-item>
+        <ion-item>
+          y:
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item *ngFor="let data of location">
+          {{data}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color="primary" (click)="click()">Get Location</ion-button>
+  </ion-toolbar>
+</ion-footer>
