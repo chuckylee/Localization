@@ -143,7 +143,7 @@ export class HomePage {
         this.addIdea();
         this.clearData();
       }
-    }, 5000 * i);
+    }, 1500 * i);
   }
 
   click() {
@@ -160,10 +160,9 @@ export class HomePage {
       // tslint:disable-next-line:prefer-const
       for (let item of results) {
         if (
-          !item.SSID.localeCompare('Le Duc Thanh') ||
-          !item.SSID.localeCompare('DaiDuong1') ||
-          !item.SSID.localeCompare('Nhat Quynh') ||
-          !item.SSID.localeCompare('Tang tret')
+          !item.SSID.localeCompare('UTS_709_IoT_1') ||
+          !item.SSID.localeCompare('UTS_709_IoT_2') ||
+          !item.SSID.localeCompare('hpccwifi2')
         ) {
           // tslint:disable-next-line:prefer-const
           let level = parseInt(item.level);

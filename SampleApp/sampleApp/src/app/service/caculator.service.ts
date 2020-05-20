@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Database } from './model';
 const data = require('../../assets/database.json');
 
 @Injectable({
@@ -55,6 +54,15 @@ export class CaculatorSerivce {
 
   //     return this.P;
   //   }
+  test() {
+    this.caculatorD(this.sam1, this.sam2);
+    console.log('D:', this.D);
+    this.arrangeD(this.D);
+    this.caculatorE();
+    this.caculatorP();
+    console.log('[', +this.Ptx + ',' + this.Pty + ']');
+    this.clearData();
+  }
 
   caculatorRSS(arrayBssid: string[], arrayLevel: number[][]) {
     for (let i = 0; i < arrayBssid.length; i++) {
@@ -220,5 +228,9 @@ export class CaculatorSerivce {
     this.P.push(this.Pty / this.Pm);
     this.Ptx = this.Ptx / this.Pm;
     this.Pty = this.Pty / this.Pm;
+  }
+
+  getRPfromDatabase() {
+    return this.database;
   }
 }

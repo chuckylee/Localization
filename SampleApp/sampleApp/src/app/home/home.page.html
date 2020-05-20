@@ -1,3 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Indoor Localization Application
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <!-- <ion-button color="primary" (click)="click()">Get Networks</ion-button>
   {{infoTxt}}
@@ -9,19 +17,49 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <canvas class="canvas" width="1000" height="600" #canvas></canvas>
+        <canvas
+          (mousedown)="getRealLocation($event)"
+          class="canvas"
+          width="1000"
+          height="600"
+          #canvas
+        ></canvas>
       </ion-col>
-      <ion-col>
+      <ion-col class="box" style="height: fit-content;">
+        <ion-label class="text">Location Prediction</ion-label>
         <ion-item>
-          x:
+          x: {{location[0]}}
         </ion-item>
         <ion-item>
-          y:
+          y: {{location[1]}}
         </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item *ngFor="let data of location">
-          {{data}}
+        <ion-item>
+          <ion-button
+            (click)="click()"
+            style="width: fit-content; font-size: 20px; margin: 1vh auto 1vh;"
+            >Get Location</ion-button
+          >
+        </ion-item>
+
+        <ion-label class="text">Real Location</ion-label>
+        <ion-item>
+          x: {{realLocation[0]}}
+        </ion-item>
+        <ion-item>
+          y: {{realLocation[1]}}
+        </ion-item>
+
+        <ion-label class="text">Accurary</ion-label>
+        <ion-item style="color: red;">
+          {{accuracy}}
+        </ion-item>
+
+        <ion-item>
+          <ion-button
+            (click)="getReferncePoint()"
+            style="width: fit-content; font-size: 20px; margin: 1vh auto 1vh;"
+            >Get RP</ion-button
+          >
         </ion-item>
       </ion-col>
     </ion-row>
@@ -30,6 +68,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button color="primary" (click)="click()">Get Location</ion-button>
+    {{infoTxt}}
   </ion-toolbar>
 </ion-footer>
