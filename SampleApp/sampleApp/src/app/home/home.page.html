@@ -28,10 +28,10 @@
       <ion-col class="box" style="height: fit-content;">
         <ion-label class="text">Location Prediction</ion-label>
         <ion-item>
-          x: {{location[0]}}
+          x: {{location[0]*0.4}}
         </ion-item>
         <ion-item>
-          y: {{location[1]}}
+          y: {{location[1]*0.4}}
         </ion-item>
         <ion-item>
           <ion-button
@@ -60,6 +60,15 @@
             style="width: fit-content; font-size: 20px; margin: 1vh auto 1vh;"
             >Get RP</ion-button
           >
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Set time scan</ion-label>
+          <ion-input [(ngModel)]="setTimeOut"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">K Nearest</ion-label>
+          <ion-input [(ngModel)]="kNearest"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

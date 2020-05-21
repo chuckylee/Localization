@@ -162,7 +162,13 @@ export class HomePage {
         if (
           !item.SSID.localeCompare('UTS_709_IoT_1') ||
           !item.SSID.localeCompare('UTS_709_IoT_2') ||
-          !item.SSID.localeCompare('hpccwifi2')
+          !item.SSID.localeCompare('EDISON-36') ||
+          !item.SSID.localeCompare('EDISON-37') ||
+          !item.SSID.localeCompare('EDISON-44') ||
+          !item.SSID.localeCompare('EDISON-45') ||
+          !item.SSID.localeCompare('EDISON-46') ||
+          !item.SSID.localeCompare('EDISON-47') ||
+          !item.SSID.localeCompare('EDISON-C4-C1')
         ) {
           // tslint:disable-next-line:prefer-const
           let level = parseInt(item.level);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-const data = require('../../assets/database.json');
+const data = require('../../assets/database709v2.json');
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,7 @@ export class CaculatorSerivce {
   Ptx = 0;
   Pty = 0;
   Pm = 0;
+  kNearest: number[] = [];
   sam1 = [
     '18:d0:71:c5:86:13',
     '5c:1a:6f:da:33:a2',
@@ -36,13 +37,13 @@ export class CaculatorSerivce {
     }
   }
 
-  getLocation(arrayBssid: string[], arrayLevel: number[][]) {
+  getLocation(arrayBssid: string[], arrayLevel: number[][], kNearest: number) {
     this.caculatorRSS(arrayBssid, arrayLevel);
     this.caculatorD(arrayBssid, this.RSSFinal);
     this.arrangeD(this.D);
     this.caculatorE();
-    this.caculatorP();
-
+    this.caculatorP(kNearest);
+    this.print();
     return this.P;
   }
   //   getLocation(arrayBssid: string[], RSSFinal: number[]) {
@@ -54,15 +55,15 @@ export class CaculatorSerivce {
 
   //     return this.P;
   //   }
-  test() {
-    this.caculatorD(this.sam1, this.sam2);
-    console.log('D:', this.D);
-    this.arrangeD(this.D);
-    this.caculatorE();
-    this.caculatorP();
-    console.log('[', +this.Ptx + ',' + this.Pty + ']');
-    this.clearData();
-  }
+  // test() {
+  //   this.caculatorD(this.sam1, this.sam2);
+  //   console.log('D:', this.D);
+  //   this.arrangeD(this.D);
+  //   this.caculatorE();
+  //   this.caculatorP();
+  //   console.log('[', +this.Ptx + ',' + this.Pty + ']');
+  //   this.clearData();
+  // }
 
   caculatorRSS(arrayBssid: string[], arrayLevel: number[][]) {
     for (let i = 0; i < arrayBssid.length; i++) {
@@ -198,6 +199,7 @@ export class CaculatorSerivce {
   }
 
   caculatorE() {
+    this.S.push(0);
     for (let i = 1; i < this.D.length; i++) {
       this.S.push(this.D[0] - this.D[i]);
       this.ES = this.ES + this.S[i - 1];
@@ -205,23 +207,23 @@ export class CaculatorSerivce {
     this.ES = this.ES / (this.D.length - 1);
   }
 
-  caculatorP() {
+  caculatorP(kNearest: number) {
     // tslint:disable-next-line:prefer-for-of
 
-    for (let i = 0; i < this.S.length; i++) {
-      if (this.S[i] >= this.ES) {
-        this.Ptx =
-          this.Ptx +
-          (1 / this.D[i]) *
-            parseFloat(this.database[this.Dcount[i]].location[0]);
+    for (let i = 0; i < kNearest; i++) {
+      // if (this.S[i] >= this.ES) {
+      this.Ptx =
+        this.Ptx +
+        (1 / this.D[i]) * parseFloat(this.database[this.Dcount[i]].location[0]);
 
-        this.Pty =
-          this.Pty +
-          (1 / this.D[i]) *
-            parseFloat(this.database[this.Dcount[i]].location[1]);
+      this.Pty =
+        this.Pty +
+        (1 / this.D[i]) * parseFloat(this.database[this.Dcount[i]].location[1]);
 
-        this.Pm = this.Pm + 1 / this.D[i];
-      }
+      this.Pm = this.Pm + 1 / this.D[i];
+      this.kNearest.push(parseFloat(this.database[this.Dcount[i]].location[0]));
+      this.kNearest.push(parseFloat(this.database[this.Dcount[i]].location[1]));
+      // }
     }
 
     this.P.push(this.Ptx / this.Pm);
@@ -232,5 +234,21 @@ export class CaculatorSerivce {
 
   getRPfromDatabase() {
     return this.database;
+  }
+
+  print() {
+    console.log('sum:', this.sum);
+    console.log('y:', this.y);
+    console.log('o:', this.o);
+    console.log('RSSFinal:', this.RSSFinal);
+    console.log('D:', this.D);
+    console.log('Dcount:', this.Dcount);
+    console.log('DText:', this.DText);
+    console.log('DcountText:', this.DcountText);
+    console.log('S:', this.S);
+    console.log('ES:', this.ES);
+    console.log('P:', this.P);
+    console.log('Ptx:', this.Ptx);
+    console.log('Pty:', this.Pty);
   }
 }

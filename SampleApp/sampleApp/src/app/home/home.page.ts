@@ -26,6 +26,8 @@ export class HomePage implements OnInit {
   x = 0.2;
   y = 0.2;
   database = [];
+  setTimeOut = 5000;
+  kNearest = 4;
   // --------------------------------------------------------
   private locationCanvas: CanvasRenderingContext2D;
   private tableCanvas: CanvasRenderingContext2D;
@@ -41,8 +43,8 @@ export class HomePage implements OnInit {
     this.tableCanvas = this.canvas.nativeElement.getContext('2d');
     this.initMap();
 
-    this.locationCanvas.fillStyle = 'blue';
-    this.RP();
+    // this.locationCanvas.fillStyle = 'blue';
+    // this.RP();
   }
 
   RP() {
@@ -64,7 +66,8 @@ export class HomePage implements OnInit {
       this.getNetworks();
       this.location = this.caculatorService.getLocation(
         this.arrayBssid,
-        this.arrayLevel
+        this.arrayLevel,
+        this.kNearest
       );
       this.print();
       this.getAccuracy();
@@ -74,7 +77,7 @@ export class HomePage implements OnInit {
         this.removeData();
       }
       console.log(i);
-    }, 5000 * i);
+    }, this.setTimeOut * i);
   }
 
   click() {
@@ -84,20 +87,7 @@ export class HomePage implements OnInit {
       }
     }
     this.check = false;
-    // this.caculatorService.test();
-
-    // this.x = this.x + 0.1;
-    // this.y = this.y + 0.1;
-    // const canvas = this.locationCanvas.canvas;
-    // this.locationCanvas.clearRect(0, 0, canvas.width, canvas.height);
-    // this.initMap();
-    // this.locationCanvas.fillStyle = 'blue';
-    // this.locationCanvas.fillRect(
-    //   (this.x * 1000) / this.width,
-    //   (this.y * 600) / this.height,
-    //   15,
-    //   15
-    // );
+    // console.log(this.caculatorService.database);
   }
 
   async getNetworks() {
@@ -107,10 +97,15 @@ export class HomePage implements OnInit {
 
       for (let item of results) {
         if (
-          !item.SSID.localeCompare('Le Duc Thanh') ||
-          !item.SSID.localeCompare('DaiDuong1') ||
-          !item.SSID.localeCompare('Nhat Quynh') ||
-          !item.SSID.localeCompare('Tang tret')
+          !item.SSID.localeCompare('UTS_709_IoT_1') ||
+          !item.SSID.localeCompare('UTS_709_IoT_2') ||
+          !item.SSID.localeCompare('EDISON-36') ||
+          !item.SSID.localeCompare('EDISON-37') ||
+          !item.SSID.localeCompare('EDISON-44') ||
+          !item.SSID.localeCompare('EDISON-45') ||
+          !item.SSID.localeCompare('EDISON-46') ||
+          !item.SSID.localeCompare('EDISON-47') ||
+          !item.SSID.localeCompare('EDISON-C4-C1')
         ) {
           // tslint:disable-next-line:radix
           const level = parseInt(item.level);
@@ -178,11 +173,21 @@ export class HomePage implements OnInit {
     this.initMap();
     this.locationCanvas.fillStyle = 'blue';
     this.locationCanvas.fillRect(
-      (this.location[0] * 1000) / this.width,
-      (this.location[1] * 600) / this.height,
+      (this.location[0] * 0.4 * 1000) / this.width,
+      (this.location[1] * 0.4 * 600) / this.height,
       15,
       15
     );
+    // this.getKnearest();
+    for (let i = 0; i < this.caculatorService.kNearest.length; i = i + 2) {
+      this.locationCanvas.fillStyle = 'yellow';
+      this.locationCanvas.fillRect(
+        (this.caculatorService.kNearest[i] * 0.4 * 1000) / this.width,
+        (this.caculatorService.kNearest[i + 1] * 0.4 * 600) / this.height,
+        15,
+        15
+      );
+    }
   }
 
   initMap() {
@@ -222,7 +227,7 @@ export class HomePage implements OnInit {
     this.tableCanvas.fillRect(
       (6 * 1000) / this.width,
       (5 * 600) / this.height,
-      83.3,
+      138.889,
       243
     );
 
@@ -230,7 +235,7 @@ export class HomePage implements OnInit {
     this.tableCanvas.fillRect(
       (10 * 1000) / this.width,
       (5 * 600) / this.height,
-      83.3,
+      138.889,
       243
     );
 
@@ -281,46 +286,6 @@ export class HomePage implements OnInit {
       110,
       114
     );
-
-    // this.tableCanvas.fillStyle = 'silver';
-    // this.tableCanvas.fillRect(
-    //   (1.35 * 1000) / this.width,
-    //   (0.75 * 600) / this.height,
-    //   75,
-    //   250
-    // );
-
-    // this.tableCanvas.fillStyle = 'silver';
-    // this.tableCanvas.fillRect(
-    //   (1.53 * 1000) / this.width,
-    //   (0.75 * 600) / this.height,
-    //   75,
-    //   250
-    // );
-
-    // this.tableCanvas.fillStyle = 'silver';
-    // this.tableCanvas.fillRect(
-    //   (1.85 * 1000) / this.width,
-    //   (0.75 * 600) / this.height,
-    //   75,
-    //   250
-    // );
-
-    // this.tableCanvas.fillStyle = 'silver';
-    // this.tableCanvas.fillRect(
-    //   (1.53 * 1000) / this.width,
-    //   (0 * 600) / this.height,
-    //   75,
-    //   150
-    // );
-
-    // this.tableCanvas.fillStyle = 'silver';
-    // this.tableCanvas.fillRect(
-    //   (1.85 * 1000) / this.width,
-    //   (0 * 600) / this.height,
-    //   75,
-    //   150
-    // );
   }
 
   getRealLocation(e) {
@@ -341,10 +306,10 @@ export class HomePage implements OnInit {
 
   getAccuracy() {
     this.accuracy = Math.sqrt(
-      (this.realLocation[0] - this.location[0]) *
-        (this.realLocation[0] - this.location[0]) +
-        (this.realLocation[1] - this.location[1]) *
-          (this.realLocation[1] - this.location[1])
+      (this.realLocation[0] - this.location[0] * 0.4) *
+        (this.realLocation[0] - this.location[0] * 0.4) +
+        (this.realLocation[1] - this.location[1] * 0.4) *
+          (this.realLocation[1] - this.location[1] * 0.4)
     );
   }
 
@@ -358,8 +323,8 @@ export class HomePage implements OnInit {
       this.tableCanvas.save();
       this.tableCanvas.fillStyle = 'red';
       this.tableCanvas.fillRect(
-        (parseFloat(this.database[i].location[0]) * 1000) / this.width - 10,
-        (parseFloat(this.database[i].location[1]) * 600) / this.height - 10,
+        (parseFloat(this.database[i].location[0]) * 0.4 * 1000) / this.width,
+        (parseFloat(this.database[i].location[1]) * 0.4 * 600) / this.height,
         15,
         15
       );
@@ -372,8 +337,9 @@ export class HomePage implements OnInit {
     // }, 20);
   }
 
-  // clear() {
-  //   const canvas = this.locationCanvas.canvas;
-  //   this.locationCanvas.clearRect(0, 0, canvas.width, canvas.height);
-  // }
+  clearCanvas() {
+    const canvas = this.locationCanvas.canvas;
+    this.locationCanvas.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  getKnearest() {}
 }
