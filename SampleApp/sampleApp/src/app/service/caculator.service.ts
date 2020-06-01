@@ -32,6 +32,7 @@ export class CaculatorSerivce {
   sam2 = [-59, -23, -30.333333333333332, -62.5, -43.5];
   constructor() {
     // this.database = data;
+
     for (let i = 0; i < this.database.length; i++) {
       this.Dcount.push(i);
     }

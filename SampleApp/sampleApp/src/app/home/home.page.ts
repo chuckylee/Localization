@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CaculatorSerivce } from '../service/caculator.service';
-
+import { TrilaSerivce } from '../service/trilateration.service';
 declare var WifiWizard2: any;
 
 @Component({
@@ -36,12 +36,17 @@ export class HomePage implements OnInit {
   // --------------------------------------------------------
 
   // ---------------------------------------------------------
-  constructor(private caculatorService: CaculatorSerivce) {}
+  constructor(
+    private caculatorService: CaculatorSerivce,
+    private trilaSerivce: TrilaSerivce
+  ) {}
 
   ngOnInit() {
     this.locationCanvas = this.canvas.nativeElement.getContext('2d');
     this.tableCanvas = this.canvas.nativeElement.getContext('2d');
     this.initMap();
+    // this.trilaSerivce.caculator();
+    this.trilaSerivce.sample();
 
     // this.locationCanvas.fillStyle = 'blue';
     // this.RP();

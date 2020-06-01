@@ -14,6 +14,7 @@ export interface Data {
   name: string[];
   bssid: string[];
   level: number[];
+  distance: number;
 }
 
 @Injectable({
@@ -56,14 +57,4 @@ export class DataService {
   addIdea(idea: Data): Promise<DocumentReference> {
     return this.ideaCollection.add(idea);
   }
-
-  // updateIdea(idea: Data): Promise<void> {
-  //   return this.ideaCollection
-  //     .doc(idea.id)
-  //     .update({ name: idea.name, notes: idea.notes });
-  // }
-
-  // deleteIdea(id: string): Promise<void> {
-  //   return this.ideaCollection.doc(id).delete();
-  // }
 }

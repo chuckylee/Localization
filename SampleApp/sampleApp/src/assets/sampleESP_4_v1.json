@@ -1,0 +1,305 @@
+[
+  {
+    "level": [-64],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": []
+  },
+  {
+    "level": [-80.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "18",
+    "location": []
+  },
+  {
+    "level": [-70],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": []
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6",
+    "location": [],
+    "level": [-75]
+  },
+  {
+    "level": [-62.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": []
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "18",
+    "location": [],
+    "level": [-82]
+  },
+  {
+    "level": [-71],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "15",
+    "location": []
+  },
+  {
+    "level": [-70],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": []
+  },
+  {
+    "level": [-64],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": []
+  },
+  {
+    "level": [-68.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": []
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": [],
+    "level": [-71]
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": [],
+    "level": [-66]
+  },
+  {
+    "location": [],
+    "level": [-78.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "21"
+  },
+  {
+    "location": [],
+    "level": [-74],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6"
+  },
+  {
+    "level": [-62.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": []
+  },
+  {
+    "location": [],
+    "level": [-83],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "12"
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "18",
+    "location": [],
+    "level": [-79.5]
+  },
+  {
+    "level": [-77.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "27",
+    "location": []
+  },
+  {
+    "location": [],
+    "level": [-77.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "21"
+  },
+  {
+    "level": [-69.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": []
+  },
+  {
+    "location": [],
+    "level": [-79],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "24"
+  },
+  {
+    "level": [-77],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "27",
+    "location": []
+  },
+  {
+    "level": [-70],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": []
+  },
+  {
+    "level": [-76],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "27",
+    "location": []
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": [],
+    "level": [-71]
+  },
+  {
+    "location": [],
+    "level": [-75],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6"
+  },
+  {
+    "level": [-78],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "24",
+    "location": []
+  },
+  {
+    "level": [-77.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "12",
+    "location": []
+  },
+  {
+    "location": [],
+    "level": [-72],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6"
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "21",
+    "location": [],
+    "level": [-79.5]
+  },
+  {
+    "location": [],
+    "level": [-81],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "12"
+  },
+  {
+    "level": [-73.75],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "9",
+    "location": []
+  },
+  {
+    "level": [-69.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6",
+    "location": []
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": [],
+    "level": [-64]
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": [],
+    "level": [-63]
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "3",
+    "location": [],
+    "level": [-63]
+  },
+  {
+    "location": [],
+    "level": [-73.5],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6"
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6",
+    "location": [],
+    "level": [-75]
+  },
+  {
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "15",
+    "location": [],
+    "level": [-68.5]
+  },
+  {
+    "level": [-68],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "15",
+    "location": []
+  },
+  {
+    "level": [-77],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "24",
+    "location": []
+  },
+  {
+    "level": [
+      -72.33333333333333,
+      "nan",
+      "nan",
+      "nan",
+      "nan",
+      "nan",
+      "nan",
+      "nan"
+    ],
+    "name": ["ESP32-4"],
+    "bssid": ["24:6f:28:25:f9:91"],
+    "distance": "6",
+    "location": []
+  }
+]
