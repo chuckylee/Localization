@@ -2,15 +2,16 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CaculatorSerivce } from '../service/caculator.service';
 import { TrilaSerivce } from '../service/trilateration.service';
 declare var WifiWizard2: any;
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  ws: WebSocket;
   results = [];
   infoTxt = '';
+  arrayName: string[] = [];
   arrayBssid: string[] = [];
   arrayLevel: number[][] = [[], [], [], [], [], [], [], [], [], []];
   RSSFinal: number[] = [];
@@ -26,27 +27,35 @@ export class HomePage implements OnInit {
   x = 0.2;
   y = 0.2;
   database = [];
-  setTimeOut = 5000;
+  setTimeOut = 1500;
   kNearest = 4;
+
+  name: string[] = ['ESP32-5', 'ESP32-2', 'ESP32-3', 'ESP32-4', 'ESP32-1'];
+  level: number[][] = [
+    [-58, -59],
+    [-67, -67, -64, -64, -64, -64, -61, -61],
+    [-60, -60, -60, -60, -63, -63],
+    [-57, -57, -56, -56, -57, -57, -57, -57],
+    [-70, -70, -70, -72, -72, -68, -68],
+  ];
   // --------------------------------------------------------
   private locationCanvas: CanvasRenderingContext2D;
   private tableCanvas: CanvasRenderingContext2D;
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
   // --------------------------------------------------------
-
   // ---------------------------------------------------------
   constructor(
     private caculatorService: CaculatorSerivce,
-    private trilaSerivce: TrilaSerivce
+    private trilaSerivce: TrilaSerivce // private socket: Socket
   ) {}
 
   ngOnInit() {
     this.locationCanvas = this.canvas.nativeElement.getContext('2d');
     this.tableCanvas = this.canvas.nativeElement.getContext('2d');
     this.initMap();
-    // this.trilaSerivce.caculator();
-    this.trilaSerivce.sample();
+
+    // this.trilaSerivce.check(this.name, this.level);
 
     // this.locationCanvas.fillStyle = 'blue';
     // this.RP();
@@ -69,14 +78,21 @@ export class HomePage implements OnInit {
     setTimeout(() => {
       this.id++;
       this.getNetworks();
-      this.location = this.caculatorService.getLocation(
-        this.arrayBssid,
-        this.arrayLevel,
-        this.kNearest
+      // this.location = this.caculatorService.getLocation(
+      //   this.arrayBssid,
+      //   this.arrayLevel,
+      //   this.kNearest
+      // );
+      // this.print();
+      // this.getAccuracy();
+      this.location = this.trilaSerivce.getLocation(
+        this.arrayName,
+        this.arrayLevel
       );
       this.print();
       this.getAccuracy();
       this.getLocationCanvas();
+      this.trilaSerivce.clearData();
       this.caculatorService.clearData();
       if (i >= 11) {
         this.removeData();
@@ -85,14 +101,19 @@ export class HomePage implements OnInit {
     }, this.setTimeOut * i);
   }
 
+  // click() {
+  //   if (this.check) {
+  //     for (let i = 1; i <= 500; ++i) {
+  //       this.setDelay(i);
+  //     }
+  //   }
+  //   this.check = false;
+  //   // console.log(this.caculatorService.database);
+  // }
   click() {
-    if (this.check) {
-      for (let i = 1; i <= 500; ++i) {
-        this.setDelay(i);
-      }
-    }
-    this.check = false;
-    // console.log(this.caculatorService.database);
+    this.location = this.trilaSerivce.getLocation(this.name, this.level);
+    this.getLocationCanvas();
+    this.trilaSerivce.clearData();
   }
 
   async getNetworks() {
@@ -106,11 +127,11 @@ export class HomePage implements OnInit {
           !item.SSID.localeCompare('UTS_709_IoT_2') ||
           !item.SSID.localeCompare('EDISON-36') ||
           !item.SSID.localeCompare('EDISON-37') ||
-          !item.SSID.localeCompare('EDISON-44') ||
-          !item.SSID.localeCompare('EDISON-45') ||
-          !item.SSID.localeCompare('EDISON-46') ||
-          !item.SSID.localeCompare('EDISON-47') ||
-          !item.SSID.localeCompare('EDISON-C4-C1')
+          !item.SSID.localeCompare('ESP32-5') ||
+          !item.SSID.localeCompare('ESP32-4') ||
+          !item.SSID.localeCompare('ESP32-3') ||
+          !item.SSID.localeCompare('ESP32-2') ||
+          !item.SSID.localeCompare('ESP32-1')
         ) {
           // tslint:disable-next-line:radix
           const level = parseInt(item.level);
@@ -127,6 +148,7 @@ export class HomePage implements OnInit {
 
   formatData(name: string, bssid: string, level: number) {
     if (this.id === 1) {
+      this.arrayName.push(name);
       this.arrayBssid.push(bssid);
       this.arrayLevel[this.countLevel].push(level);
       this.countLevel++;
@@ -142,6 +164,7 @@ export class HomePage implements OnInit {
       }
       if (check === true) {
         let k = this.arrayBssid.length;
+        this.arrayName.push(name);
         this.arrayBssid.push(bssid);
         this.arrayLevel[k - 1].push(level);
       }
@@ -156,7 +179,7 @@ export class HomePage implements OnInit {
       console.log(
         'Real Data:  ',
 
-        this.arrayBssid[i] + '  ' + '   [' + this.arrayLevel[i] + ']'
+        this.arrayName[i] + '  ' + '   [' + this.arrayLevel[i] + ']'
       );
     }
     console.log('RSSFinal: ', this.RSSFinal);
@@ -177,22 +200,18 @@ export class HomePage implements OnInit {
     this.locationCanvas.clearRect(0, 0, canvas.width, canvas.height);
     this.initMap();
     this.locationCanvas.fillStyle = 'blue';
+    // this.locationCanvas.fillRect(
+    //   (this.location[0] * 0.4 * 1000) / this.width,
+    //   (this.location[1] * 0.4 * 600) / this.height,
+    //   15,
+    //   15
+    // );
     this.locationCanvas.fillRect(
-      (this.location[0] * 0.4 * 1000) / this.width,
-      (this.location[1] * 0.4 * 600) / this.height,
+      (this.location[0] * 1000) / this.width,
+      (this.location[1] * 600) / this.height,
       15,
       15
     );
-    // this.getKnearest();
-    for (let i = 0; i < this.caculatorService.kNearest.length; i = i + 2) {
-      this.locationCanvas.fillStyle = 'yellow';
-      this.locationCanvas.fillRect(
-        (this.caculatorService.kNearest[i] * 0.4 * 1000) / this.width,
-        (this.caculatorService.kNearest[i + 1] * 0.4 * 600) / this.height,
-        15,
-        15
-      );
-    }
   }
 
   initMap() {
@@ -290,6 +309,46 @@ export class HomePage implements OnInit {
       (0.8 * 600) / this.height,
       110,
       114
+    );
+
+    this.tableCanvas.fillStyle = 'yellow';
+    this.tableCanvas.fillRect(
+      (10.8 * 1000) / this.width,
+      (0.4 * 600) / this.height,
+      15,
+      15
+    );
+
+    this.tableCanvas.fillStyle = 'yellow';
+    this.tableCanvas.fillRect(
+      (14 * 1000) / this.width,
+      (0.4 * 600) / this.height,
+      15,
+      15
+    );
+
+    this.tableCanvas.fillStyle = 'yellow';
+    this.tableCanvas.fillRect(
+      (14 * 1000) / this.width,
+      (8 * 600) / this.height,
+      15,
+      15
+    );
+
+    this.tableCanvas.fillStyle = 'yellow';
+    this.tableCanvas.fillRect(
+      (10.8 * 1000) / this.width,
+      (8 * 600) / this.height,
+      15,
+      15
+    );
+
+    this.tableCanvas.fillStyle = 'yellow';
+    this.tableCanvas.fillRect(
+      (14 * 1000) / this.width,
+      (4 * 600) / this.height,
+      15,
+      15
     );
   }
 

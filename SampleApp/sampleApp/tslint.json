@@ -51,6 +51,7 @@
     "component-selector": [true, "element", "app", "page", "kebab-case"],
     "only-arrow-functions": false,
     "space-before-function-paren": false,
-    "prefer-const": false
+    "prefer-const": false,
+    "prefer-for-of": false
   }
 }
