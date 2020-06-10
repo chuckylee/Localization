@@ -1,18 +1,14 @@
-# import socket
-
-# HOST = '192.168.56.1'  # Standard loopback interface address (localhost)
-# PORT = 20019        # Port to listen on (non-privileged ports are > 1023)
-
-
-# with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-#     s.bind((HOST, PORT))
-#     s.listen()
-#     conn, addr = s.accept()
-#     with conn:
-#         print('Connected by', addr)
-#         while True:
-#             data = conn.recv(1024)
-#             if data:
-#                 print('Received', data)
-#             conn.sendall(data)
-
+string = b'UTS_709_IoT_1 -66 UTS_709_IoT_2 -34 '
+s = string.decode()
+name = []
+value = ""
+print(s)
+print(len(s))
+for x in range(len(s)):
+    if s[x] != " ":
+        value += s[x]
+        # print(s[x])
+    else:
+        name.append(value)
+        value = ""
+print(name)

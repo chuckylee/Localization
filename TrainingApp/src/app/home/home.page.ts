@@ -1,6 +1,12 @@
-import { Component, ɵsetCurrentInjector } from '@angular/core';
+import { Component, ɵsetCurrentInjector, OnInit } from '@angular/core';
 import { DataService, Data } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
+import { map } from 'rxjs/operators';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 declare var WifiWizard2: any;
 
@@ -9,7 +15,7 @@ declare var WifiWizard2: any;
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   arrayName: string[] = [];
   arrayBssid: string[] = [];
   arrayLevel: number[][] = [[], [], [], [], [], [], [], []];
@@ -40,12 +46,46 @@ export class HomePage {
     distance: null,
   };
   a = [];
-
+  postsCol: AngularFirestoreCollection<Data>;
+  posts: Observable<Data[]>;
+  newposts: Observable<Data[]>;
   constructor(
     private dataService: DataService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private afs: AngularFirestore
   ) {
     // console.log(this.a.length);
+  }
+
+  ngOnInit() {
+    // this.dataService
+    //   .getList()
+    //   .snapshotChanges()
+    //   .pipe(
+    //     map((changes) =>
+    //       changes.map((c) => ({
+    //         // key: c.payload.doc.id,
+    //         // ...c.payload.doc.data(),
+    //       }))
+    //     )
+    //   )
+    //   .subscribe((datas) => {
+    //     console.log(datas);
+    //   });
+    this.postsCol = this.afs.collection('cities');
+    this.posts = this.postsCol.valueChanges();
+    this.postsCol.snapshotChanges().subscribe((data) => {
+      data.forEach((change) => {
+        if (change.type === 'added') {
+          console.log(change.payload.doc.id);
+          console.log(change.payload.doc.data());
+        }
+      });
+    });
+
+    // this.posts.subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 
   async UpdateDatabaseSuccess() {

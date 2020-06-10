@@ -10,11 +10,8 @@ import { Observable } from 'rxjs';
 
 export interface Data {
   id?: string;
-  location: number[];
-  name: string[];
-  bssid: string[];
-  level: number[];
-  distance: number;
+  x: number;
+  y: number;
 }
 
 @Injectable({

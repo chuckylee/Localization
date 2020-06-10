@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyApmOg57GvLrefkYeIUiNyhw9JzLvsov2Q',
+    authDomain: 'datatrila.firebaseapp.com',
+    databaseURL: 'https://datatrila.firebaseio.com',
+    projectId: 'datatrila',
+    storageBucket: 'datatrila.appspot.com',
+    messagingSenderId: '316839328156',
+    appId: '1:316839328156:web:d48f87a36a1b9ff29cf059',
+    measurementId: 'G-TZYPTPK53G',
+  },
 };
 
 /*

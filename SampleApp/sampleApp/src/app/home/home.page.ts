@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CaculatorSerivce } from '../service/caculator.service';
 import { TrilaSerivce } from '../service/trilateration.service';
+import { DataService, Data } from 'src/app/service/data.service';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 declare var WifiWizard2: any;
 @Component({
   selector: 'app-home',
@@ -31,30 +37,44 @@ export class HomePage implements OnInit {
   kNearest = 4;
 
   name: string[] = ['ESP32-5', 'ESP32-2', 'ESP32-3', 'ESP32-4', 'ESP32-1'];
-  level: number[][] = [
-    [-58, -59],
-    [-67, -67, -64, -64, -64, -64, -61, -61],
-    [-60, -60, -60, -60, -63, -63],
-    [-57, -57, -56, -56, -57, -57, -57, -57],
-    [-70, -70, -70, -72, -72, -68, -68],
-  ];
+  level: number[][] = [[-58], [-67], [-60], [-57], [-70]];
   // --------------------------------------------------------
   private locationCanvas: CanvasRenderingContext2D;
   private tableCanvas: CanvasRenderingContext2D;
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
   // --------------------------------------------------------
+  postsCol: AngularFirestoreCollection<Data>;
+  posts: Observable<Data[]>;
+  newposts: Observable<Data[]>;
   // ---------------------------------------------------------
   constructor(
     private caculatorService: CaculatorSerivce,
-    private trilaSerivce: TrilaSerivce // private socket: Socket
+    private trilaSerivce: TrilaSerivce, // private socket: Socket
+    private afs: AngularFirestore
   ) {}
 
   ngOnInit() {
     this.locationCanvas = this.canvas.nativeElement.getContext('2d');
     this.tableCanvas = this.canvas.nativeElement.getContext('2d');
     this.initMap();
+    // this.location = this.trilaSerivce.getLocation(this.name, this.level);
 
+    this.postsCol = this.afs.collection('location');
+    this.posts = this.postsCol.valueChanges();
+    this.postsCol.snapshotChanges().subscribe((data) => {
+      data.forEach((change) => {
+        if (change.type === 'added') {
+          console.log(change.payload.doc.id);
+          console.log(change.payload.doc.data().x);
+          console.log(change.payload.doc.data().y);
+          this.getLocationCanvas(
+            change.payload.doc.data().x,
+            change.payload.doc.data().y
+          );
+        }
+      });
+    });
     // this.trilaSerivce.check(this.name, this.level);
 
     // this.locationCanvas.fillStyle = 'blue';
@@ -91,7 +111,7 @@ export class HomePage implements OnInit {
       );
       this.print();
       this.getAccuracy();
-      this.getLocationCanvas();
+      // this.getLocationCanvas();
       this.trilaSerivce.clearData();
       this.caculatorService.clearData();
       if (i >= 11) {
@@ -112,7 +132,7 @@ export class HomePage implements OnInit {
   // }
   click() {
     this.location = this.trilaSerivce.getLocation(this.name, this.level);
-    this.getLocationCanvas();
+    // this.getLocationCanvas();
     this.trilaSerivce.clearData();
   }
 
@@ -195,7 +215,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  getLocationCanvas() {
+  getLocationCanvas(x: number, y: number) {
     const canvas = this.locationCanvas.canvas;
     this.locationCanvas.clearRect(0, 0, canvas.width, canvas.height);
     this.initMap();
@@ -207,8 +227,8 @@ export class HomePage implements OnInit {
     //   15
     // );
     this.locationCanvas.fillRect(
-      (this.location[0] * 1000) / this.width,
-      (this.location[1] * 600) / this.height,
+      (x * 1000) / this.width,
+      (y * 600) / this.height,
       15,
       15
     );
