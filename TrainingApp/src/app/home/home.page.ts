@@ -131,25 +131,25 @@ export class HomePage implements OnInit {
     }, 2000 * i);
   }
 
-  click() {
-    this.clearData();
-    for (let i = 1; i <= 100; ++i) {
-      this.setDelay2(i);
-    }
-    setTimeout(() => {
-      this.caculator();
-    }, 101000);
-    setTimeout(() => {
-      this.print();
-      this.addIdea();
-    }, 102000);
-  }
   // click() {
   //   this.clearData();
-  //   for (let i = 1; i <= 6; i++) {
-  //     this.setDelay(i);
+  //   for (let i = 1; i <= 100; ++i) {
+  //     this.setDelay2(i);
   //   }
+  //   setTimeout(() => {
+  //     this.caculator();
+  //   }, 101000);
+  //   setTimeout(() => {
+  //     this.print();
+  //     this.addIdea();
+  //   }, 102000);
   // }
+  click() {
+    this.clearData();
+    for (let i = 1; i <= 6; i++) {
+      this.setDelay(i);
+    }
+  }
 
   // setDelay(i) {
   //   setTimeout(() => {
@@ -212,13 +212,13 @@ export class HomePage implements OnInit {
       console.log(
         'Real Data:  ',
         this.arrayName[i] +
-          '  ' +
-          this.arrayBssid[i] +
-          '  ' +
-          this.RSSFinal[i] +
-          '   [' +
-          this.arrayLevel[i] +
-          ']'
+        '  ' +
+        this.arrayBssid[i] +
+        '  ' +
+        this.RSSFinal[i] +
+        '   [' +
+        this.arrayLevel[i] +
+        ']'
       );
     }
     // console.log('----------------------');
@@ -280,7 +280,7 @@ export class HomePage implements OnInit {
           this.o[i] =
             this.o[i] +
             (this.arrayLevel[i][j] - this.y[i]) *
-              (this.arrayLevel[i][j] - this.y[i]);
+            (this.arrayLevel[i][j] - this.y[i]);
         }
       }
       this.o[i] = Math.sqrt(this.o[i] / (this.arrayLevel[i].length - 1));

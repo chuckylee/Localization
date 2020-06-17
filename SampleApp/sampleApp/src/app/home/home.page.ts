@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
     private caculatorService: CaculatorSerivce,
     private trilaSerivce: TrilaSerivce, // private socket: Socket
     private afs: AngularFirestore
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.locationCanvas = this.canvas.nativeElement.getContext('2d');
@@ -68,10 +68,18 @@ export class HomePage implements OnInit {
           console.log(change.payload.doc.id);
           console.log(change.payload.doc.data().x);
           console.log(change.payload.doc.data().y);
-          this.getLocationCanvas(
-            change.payload.doc.data().x,
-            change.payload.doc.data().y
-          );
+          if (change.payload.doc.data().x > 14.4 || change.payload.doc.data().x < 0 || change.payload.doc.data().y > 8.4 || change.payload.doc.data().y < 0) {
+            this.getLocationCanvas(1, 1);
+          } else {
+            this.location[0] = change.payload.doc.data().x;
+            this.location[1] = change.payload.doc.data().y;
+
+            this.getLocationCanvas(
+              change.payload.doc.data().x,
+              change.payload.doc.data().y
+            );
+          }
+
         }
       });
     });
@@ -81,45 +89,45 @@ export class HomePage implements OnInit {
     // this.RP();
   }
 
-  RP() {
-    for (let i = 1; i < 36; i = i + 3) {
-      for (let j = 1; j < 21; j = j + 3) {
-        this.locationCanvas.fillRect(
-          (i * 0.4 * 1000) / this.width,
-          (j * 0.4 * 600) / this.height,
-          15,
-          15
-        );
-      }
-    }
-  }
+  // RP() {
+  //   for (let i = 1; i < 36; i = i + 3) {
+  //     for (let j = 1; j < 21; j = j + 3) {
+  //       this.locationCanvas.fillRect(
+  //         (i * 0.4 * 1000) / this.width,
+  //         (j * 0.4 * 600) / this.height,
+  //         15,
+  //         15
+  //       );
+  //     }
+  //   }
+  // }
 
-  setDelay(i) {
-    setTimeout(() => {
-      this.id++;
-      this.getNetworks();
-      // this.location = this.caculatorService.getLocation(
-      //   this.arrayBssid,
-      //   this.arrayLevel,
-      //   this.kNearest
-      // );
-      // this.print();
-      // this.getAccuracy();
-      this.location = this.trilaSerivce.getLocation(
-        this.arrayName,
-        this.arrayLevel
-      );
-      this.print();
-      this.getAccuracy();
-      // this.getLocationCanvas();
-      this.trilaSerivce.clearData();
-      this.caculatorService.clearData();
-      if (i >= 11) {
-        this.removeData();
-      }
-      console.log(i);
-    }, this.setTimeOut * i);
-  }
+  // setDelay(i) {
+  //   setTimeout(() => {
+  //     this.id++;
+  //     this.getNetworks();
+  //     // this.location = this.caculatorService.getLocation(
+  //     //   this.arrayBssid,
+  //     //   this.arrayLevel,
+  //     //   this.kNearest
+  //     // );
+  //     // this.print();
+  //     // this.getAccuracy();
+  //     this.location = this.trilaSerivce.getLocation(
+  //       this.arrayName,
+  //       this.arrayLevel
+  //     );
+  //     this.print();
+  //     this.getAccuracy();
+  //     // this.getLocationCanvas();
+  //     this.trilaSerivce.clearData();
+  //     this.caculatorService.clearData();
+  //     if (i >= 11) {
+  //       this.removeData();
+  //     }
+  //     console.log(i);
+  //   }, this.setTimeOut * i);
+  // }
 
   // click() {
   //   if (this.check) {
@@ -130,90 +138,90 @@ export class HomePage implements OnInit {
   //   this.check = false;
   //   // console.log(this.caculatorService.database);
   // }
-  click() {
-    this.location = this.trilaSerivce.getLocation(this.name, this.level);
-    // this.getLocationCanvas();
-    this.trilaSerivce.clearData();
-  }
+  // click() {
+  //   this.location = this.trilaSerivce.getLocation(this.name, this.level);
+  //   // this.getLocationCanvas();
+  //   this.trilaSerivce.clearData();
+  // }
 
-  async getNetworks() {
-    this.infoTxt = 'loading...';
-    try {
-      let results = await WifiWizard2.scan();
+  // async getNetworks() {
+  //   this.infoTxt = 'loading...';
+  //   try {
+  //     let results = await WifiWizard2.scan();
 
-      for (let item of results) {
-        if (
-          !item.SSID.localeCompare('UTS_709_IoT_1') ||
-          !item.SSID.localeCompare('UTS_709_IoT_2') ||
-          !item.SSID.localeCompare('EDISON-36') ||
-          !item.SSID.localeCompare('EDISON-37') ||
-          !item.SSID.localeCompare('ESP32-5') ||
-          !item.SSID.localeCompare('ESP32-4') ||
-          !item.SSID.localeCompare('ESP32-3') ||
-          !item.SSID.localeCompare('ESP32-2') ||
-          !item.SSID.localeCompare('ESP32-1')
-        ) {
-          // tslint:disable-next-line:radix
-          const level = parseInt(item.level);
-          this.formatData(item.SSID, item.BSSID, level);
-          this.results = results;
-        }
-      }
-      this.results = results;
-      this.infoTxt = '';
-    } catch (error) {
-      this.infoTxt = error;
-    }
-  }
+  //     for (let item of results) {
+  //       if (
+  //         !item.SSID.localeCompare('UTS_709_IoT_1') ||
+  //         !item.SSID.localeCompare('UTS_709_IoT_2') ||
+  //         !item.SSID.localeCompare('EDISON-36') ||
+  //         !item.SSID.localeCompare('EDISON-37') ||
+  //         !item.SSID.localeCompare('ESP32-5') ||
+  //         !item.SSID.localeCompare('ESP32-4') ||
+  //         !item.SSID.localeCompare('ESP32-3') ||
+  //         !item.SSID.localeCompare('ESP32-2') ||
+  //         !item.SSID.localeCompare('ESP32-1')
+  //       ) {
+  //         // tslint:disable-next-line:radix
+  //         const level = parseInt(item.level);
+  //         this.formatData(item.SSID, item.BSSID, level);
+  //         this.results = results;
+  //       }
+  //     }
+  //     this.results = results;
+  //     this.infoTxt = '';
+  //   } catch (error) {
+  //     this.infoTxt = error;
+  //   }
+  // }
 
-  formatData(name: string, bssid: string, level: number) {
-    if (this.id === 1) {
-      this.arrayName.push(name);
-      this.arrayBssid.push(bssid);
-      this.arrayLevel[this.countLevel].push(level);
-      this.countLevel++;
-    } else {
-      let bssidCurrent = this.arrayBssid.length;
-      let check = true;
-      for (let i = 0; i < bssidCurrent; i++) {
-        if (!bssid.localeCompare(this.arrayBssid[i])) {
-          this.arrayLevel[i].push(level);
-          check = false;
-          break;
-        }
-      }
-      if (check === true) {
-        let k = this.arrayBssid.length;
-        this.arrayName.push(name);
-        this.arrayBssid.push(bssid);
-        this.arrayLevel[k - 1].push(level);
-      }
-    }
-  }
+  // formatData(name: string, bssid: string, level: number) {
+  //   if (this.id === 1) {
+  //     this.arrayName.push(name);
+  //     this.arrayBssid.push(bssid);
+  //     this.arrayLevel[this.countLevel].push(level);
+  //     this.countLevel++;
+  //   } else {
+  //     let bssidCurrent = this.arrayBssid.length;
+  //     let check = true;
+  //     for (let i = 0; i < bssidCurrent; i++) {
+  //       if (!bssid.localeCompare(this.arrayBssid[i])) {
+  //         this.arrayLevel[i].push(level);
+  //         check = false;
+  //         break;
+  //       }
+  //     }
+  //     if (check === true) {
+  //       let k = this.arrayBssid.length;
+  //       this.arrayName.push(name);
+  //       this.arrayBssid.push(bssid);
+  //       this.arrayLevel[k - 1].push(level);
+  //     }
+  //   }
+  // }
 
-  print() {
-    console.log('----------------------');
+  // print() {
+  //   console.log('----------------------');
 
-    let nameLenght = this.arrayBssid.length;
-    for (let i = 0; i < nameLenght; i++) {
-      console.log(
-        'Real Data:  ',
+  //   let nameLenght = this.arrayBssid.length;
+  //   for (let i = 0; i < nameLenght; i++) {
+  //     console.log(
+  //       'Real Data:  ',
 
-        this.arrayName[i] + '  ' + '   [' + this.arrayLevel[i] + ']'
-      );
-    }
-    console.log('RSSFinal: ', this.RSSFinal);
-    console.log(
-      'Location: [' + this.location[0] + ',' + this.location[1] + ']'
-    );
-    console.log('----------------------');
-  }
+  //       this.arrayName[i] + '  ' + '   [' + this.arrayLevel[i] + ']'
+  //     );
+  //   }
+  //   console.log('RSSFinal: ', this.RSSFinal);
+  //   console.log(
+  //     'Location: [' + this.location[0] + ',' + this.location[1] + ']'
+  //   );
+  //   console.log('----------------------');
+  // }
 
-  removeData() {
-    for (let i = 0; i < this.arrayBssid.length; i++) {
-      this.arrayLevel[i].shift();
-    }
-  }
+  // removeData() {
+  //   for (let i = 0; i < this.arrayBssid.length; i++) {
+  //     this.arrayLevel[i].shift();
+  //   }
+  // }
 
   getLocationCanvas(x: number, y: number) {
     const canvas = this.locationCanvas.canvas;
@@ -331,45 +339,45 @@ export class HomePage implements OnInit {
       114
     );
 
-    this.tableCanvas.fillStyle = 'yellow';
-    this.tableCanvas.fillRect(
-      (10.8 * 1000) / this.width,
-      (0.4 * 600) / this.height,
-      15,
-      15
-    );
+    // this.tableCanvas.fillStyle = 'yellow';
+    // this.tableCanvas.fillRect(
+    //   (10.8 * 1000) / this.width,
+    //   (0.4 * 600) / this.height,
+    //   15,
+    //   15
+    // );
 
-    this.tableCanvas.fillStyle = 'yellow';
-    this.tableCanvas.fillRect(
-      (14 * 1000) / this.width,
-      (0.4 * 600) / this.height,
-      15,
-      15
-    );
+    // this.tableCanvas.fillStyle = 'yellow';
+    // this.tableCanvas.fillRect(
+    //   (14 * 1000) / this.width,
+    //   (0.4 * 600) / this.height,
+    //   15,
+    //   15
+    // );
 
-    this.tableCanvas.fillStyle = 'yellow';
-    this.tableCanvas.fillRect(
-      (14 * 1000) / this.width,
-      (8 * 600) / this.height,
-      15,
-      15
-    );
+    // this.tableCanvas.fillStyle = 'yellow';
+    // this.tableCanvas.fillRect(
+    //   (14 * 1000) / this.width,
+    //   (8 * 600) / this.height,
+    //   15,
+    //   15
+    // );
 
-    this.tableCanvas.fillStyle = 'yellow';
-    this.tableCanvas.fillRect(
-      (10.8 * 1000) / this.width,
-      (8 * 600) / this.height,
-      15,
-      15
-    );
+    // this.tableCanvas.fillStyle = 'yellow';
+    // this.tableCanvas.fillRect(
+    //   (10.8 * 1000) / this.width,
+    //   (8 * 600) / this.height,
+    //   15,
+    //   15
+    // );
 
-    this.tableCanvas.fillStyle = 'yellow';
-    this.tableCanvas.fillRect(
-      (14 * 1000) / this.width,
-      (4 * 600) / this.height,
-      15,
-      15
-    );
+    // this.tableCanvas.fillStyle = 'yellow';
+    // this.tableCanvas.fillRect(
+    //   (14 * 1000) / this.width,
+    //   (4 * 600) / this.height,
+    //   15,
+    //   15
+    // );
   }
 
   getRealLocation(e) {
@@ -390,40 +398,40 @@ export class HomePage implements OnInit {
 
   getAccuracy() {
     this.accuracy = Math.sqrt(
-      (this.realLocation[0] - this.location[0] * 0.4) *
-        (this.realLocation[0] - this.location[0] * 0.4) +
-        (this.realLocation[1] - this.location[1] * 0.4) *
-          (this.realLocation[1] - this.location[1] * 0.4)
+      (this.realLocation[0] - this.location[0]) *
+      (this.realLocation[0] - this.location[0]) +
+      (this.realLocation[1] - this.location[1]) *
+      (this.realLocation[1] - this.location[1])
     );
   }
 
-  getReferncePoint() {
-    // setInterval(() => {
-    this.database = this.caculatorService.getRPfromDatabase();
-    console.log(this.database);
+  // getReferncePoint() {
+  //   // setInterval(() => {
+  //   this.database = this.caculatorService.getRPfromDatabase();
+  //   console.log(this.database);
 
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.database.length; i++) {
-      this.tableCanvas.save();
-      this.tableCanvas.fillStyle = 'red';
-      this.tableCanvas.fillRect(
-        (parseFloat(this.database[i].location[0]) * 0.4 * 1000) / this.width,
-        (parseFloat(this.database[i].location[1]) * 0.4 * 600) / this.height,
-        15,
-        15
-      );
-      this.tableCanvas.restore();
-    }
+  //   // tslint:disable-next-line:prefer-for-of
+  //   for (let i = 0; i < this.database.length; i++) {
+  //     this.tableCanvas.save();
+  //     this.tableCanvas.fillStyle = 'red';
+  //     this.tableCanvas.fillRect(
+  //       (parseFloat(this.database[i].location[0]) * 0.4 * 1000) / this.width,
+  //       (parseFloat(this.database[i].location[1]) * 0.4 * 600) / this.height,
+  //       15,
+  //       15
+  //     );
+  //     this.tableCanvas.restore();
+  //   }
 
-    //   setTimeout(() => {
-    //     this.clear();
-    //   }, 10);
-    // }, 20);
-  }
+  //   //   setTimeout(() => {
+  //   //     this.clear();
+  //   //   }, 10);
+  //   // }, 20);
+  // }
 
   clearCanvas() {
     const canvas = this.locationCanvas.canvas;
     this.locationCanvas.clearRect(0, 0, canvas.width, canvas.height);
   }
-  getKnearest() {}
+  // getKnearest() {}
 }

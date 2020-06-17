@@ -5,8 +5,6 @@ import socket
 import json
 import math
 s = socket.socket()
-s.bind(('192.168.1.174', 8090))
-s.listen(0)
 data = []
 fakeData = ['ESP32-5', '-58', 'ESP32-2', '-67',
             'ESP32-3', '-60', 'ESP32-4', '-57', 'ESP32-1', '-70']
@@ -19,9 +17,15 @@ TriangleValue = []
 TriangleChoosen = 0
 locationTrila = [0, 0]
 # ------------------------------------------------
-# nameTriangle = [['ESP32-1', 'ESP32-3', 'ESP32-4'],
-#                 ['ESP32-1', 'ESP32-2', 'ESP32-4']]
-nameTriangle = [['ESP32-1', 'ESP32-4', 'ESP32-5']]
+nameTriangle = [['ESP32-1', 'ESP32-3', 'ESP32-4'],
+                ['ESP32-1', 'ESP32-5', 'ESP32-4']]
+# nameTriangle = [['EDISON-36', 'EDISON-44', 'EDISON-45'],
+#                 ['EDISON-36', 'EDISON-37', 'EDISON-45'],
+#                 ['EDISON-37', 'ESP32-1', 'EDISON-45'],
+#                 ['EDISON-46', 'ESP32-1', 'EDISON-45'],
+#                 ['ESP32-3', 'ESP32-1', 'EDISON-46'],
+#                 ['ESP32-3', 'ESP32-4', 'EDISON-46'],
+#                 ['ESP32-5', 'ESP32-4', 'EDISON-46'], ]
 
 
 class Location(object):
@@ -71,6 +75,12 @@ store = firestore.client()
 # print('Leght:', len(data))
 
 # print(data)
+
+
+def connectSocket():
+    global s
+    s.bind(('192.168.2.14', 8090))
+    s.listen(0)
 
 
 def deleteDatabase():
@@ -125,7 +135,7 @@ def caculateDistance():
             for y in data:
                 if name[x] == y['name']:
                     distanceValue.append(
-                        pow(10, (averageRSSDatabase(y['level'])-int(rssi[x]))/40))
+                        pow(10, (averageRSSDatabase(y['level'])-int(rssi[x]))/30))
     print('distanceValue: ' + str(distanceValue))
 
 
@@ -143,8 +153,8 @@ def defineTriangle():
     for i in range(len(TriangleValue)):
         if TriangleValue[i] == min(TriangleValue):
             TriangleChoosen = i
-    # print('TriangleChoosen: ' + str(TriangleChoosen) +
-    #       ' ' + str(nameTriangle[TriangleChoosen]))
+    print('TriangleChoosen: ' + str(TriangleChoosen) +
+          ' ' + str(nameTriangle[TriangleChoosen]))
 
 
 def defineLocation():
@@ -169,6 +179,7 @@ def defineLocation():
                     distance[i] = distanceValue[j]
     # print('loc: ' + str(location))
     # print('dis: ' + str(distance))
+
     A = location[0][0] - location[1][0]
     B = location[0][1] - location[1][1]
     D = location[0][0] - location[2][0]
@@ -179,8 +190,27 @@ def defineLocation():
     F = pow(distance[2], 2) - pow(distance[0], 2) + pow(location[0][0], 2) -\
         pow(location[2][0], 2) + pow(location[0]
                                      [1], 2) - pow(location[2][1], 2)
-    locationTrila[1] = (A * F - D * C) / (2 * A * E - 2 * D * B)
-    locationTrila[0] = (C - 2 * B * locationTrila[1]) / (2 * A)
+    print('A: '+str(A))
+    print('B: '+str(B))
+    print('C: '+str(C))
+    print('D: '+str(D))
+    print('E: '+str(E))
+    print('F: '+str(F))
+    if A == 0:
+        locationTrila[1] = C/(2*B)
+        locationTrila[0] = (F-2*E*locationTrila[1])/(2*D)
+    elif B == 0:
+        locationTrila[0] = C/(2*A)
+        locationTrila[1] = (F-2*D*locationTrila[0])/(2*E)
+    elif D == 0:
+        locationTrila[1] = F/(2*E)
+        locationTrila[0] = (C-2*B*locationTrila[1])/(2*A)
+    elif E == 0:
+        locationTrila[0] = F/(2*D)
+        locationTrila[1] = (C-2*A*locationTrila[0])/(2*B)
+    else:
+        locationTrila[1] = (A * F - D * C) / (2 * A * E - 2 * D * B)
+        locationTrila[0] = (C - 2 * B * locationTrila[1]) / (2 * A)
     print('Location: ' + str(locationTrila))
 
 
@@ -203,18 +233,16 @@ def addToFirebase(x, y, count):
 
 
 def createSocket():
-    global locationTrila
+    global locationTrila, s
     count = 0
     deleteDatabase()
     while True:
         client, addr = s.accept()
         while True:
-            content = client.recv(50)
-        # store.collection('cities').document(u'hi'+ str(count)).delete();
+            content = client.recv(100)
             if len(content) == 0:
                 print('none')
             else:
-                # store.collection(u'cities').document(u'hi'+ str(count)).set(data1)
                 print(content)
                 print(count)
                 configString(content)
@@ -224,8 +252,8 @@ def createSocket():
                 defineTriangle()
                 defineLocation()
                 addToFirebase(locationTrila[0], locationTrila[1], count)
-                print('accuracy: ' + str(math.sqrt((locationTrila[0]-7.6)*(
-                    locationTrila[0]-7.6) + (locationTrila[1]-6.4)*(locationTrila[1]-6.4))))
+                # print('accuracy: ' + str(math.sqrt((locationTrila[0]-7.6)*(
+                #     locationTrila[0]-7.6) + (locationTrila[1]-6.4)*(locationTrila[1]-6.4))))
                 clearData()
                 # print(data)
                 # data = []
@@ -235,8 +263,9 @@ def createSocket():
 
 
 if __name__ == "__main__":
-    createSocket()
 
+    connectSocket()
+    createSocket()
     # deleteDatabase()
     # locate = Location(x=5, y=6)
     # store.collection(u'location').document(u'locate2').set(locate.to_dict())

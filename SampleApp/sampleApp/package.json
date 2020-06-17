@@ -31,6 +31,7 @@
     "cz.blocshop.socketsforcordova": "^1.1.0",
     "es6-promise-plugin": "^4.1.0",
     "firebase": "^7.15.0",
+    "ionic": "^5.4.16",
     "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.5.1",
     "socket.io-client": "^2.3.0",
