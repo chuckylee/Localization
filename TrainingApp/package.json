@@ -27,14 +27,13 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "cordova-android": "^8.1.0",
-    "cordova-ios": "5.1.1",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
     "core-js": "^2.5.4",
     "es6-promise-plugin": "^4.1.0",
     "firebase": "^7.13.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
-    "wifiwizard": "git+https://github.com/hoerresb/WifiWizard.git",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -76,8 +75,7 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {},
-      "com.pylonproducts.wifiwizard": {}
+      "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
       "android",

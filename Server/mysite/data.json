@@ -1,26 +1,26 @@
 [
   {
     "level": [
-      -55.5
+      -57.5
     ],
     "name": "ESP32-1",
-    "location_x": 3.8,
-    "location_y": 0
+    "location_x": 13.71,
+    "location_y": 3.82
   },
   {
     "level": [
-      -55.5
+      -56.5
     ],
     "name": "ESP32-3",
-    "location_x": 8,
-    "location_y": 0
+    "location_x": 10.4,
+    "location_y": 2
   },
   {
     "name": "ESP32-4",
-    "location_x": 8,
-    "location_y": 3.92,
+    "location_x": 10.8,
+    "location_y": 6.8,
     "level": [
-      -55.5
+      -58.5
     ]
   },
   {

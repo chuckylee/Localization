@@ -4,6 +4,10 @@ from firebase_admin import credentials, firestore
 import socket
 import json
 import math
+import xlsxwriter
+import datetime
+workbook = xlsxwriter.Workbook('test(10.8-8).xlsx')
+worksheet = workbook.add_worksheet()
 s = socket.socket()
 data = []
 fakeData = ['ESP32-5', '-58', 'ESP32-2', '-67',
@@ -17,8 +21,8 @@ TriangleValue = []
 TriangleChoosen = 0
 locationTrila = [0, 0]
 # ------------------------------------------------
-nameTriangle = [['ESP32-1', 'ESP32-3', 'ESP32-4'],
-                ['ESP32-1', 'ESP32-5', 'ESP32-4']]
+nameTriangle = [['ESP32-1', 'ESP32-3', 'ESP32-4']]
+# ['ESP32-1', 'ESP32-5', 'ESP32-4']]
 # nameTriangle = [['EDISON-36', 'EDISON-44', 'EDISON-45'],
 #                 ['EDISON-36', 'EDISON-37', 'EDISON-45'],
 #                 ['EDISON-37', 'ESP32-1', 'EDISON-45'],
@@ -26,6 +30,7 @@ nameTriangle = [['ESP32-1', 'ESP32-3', 'ESP32-4'],
 #                 ['ESP32-3', 'ESP32-1', 'EDISON-46'],
 #                 ['ESP32-3', 'ESP32-4', 'EDISON-46'],
 #                 ['ESP32-5', 'ESP32-4', 'EDISON-46'], ]
+count_ex = 1
 
 
 class Location(object):
@@ -79,7 +84,7 @@ store = firestore.client()
 
 def connectSocket():
     global s
-    s.bind(('192.168.2.14', 8090))
+    s.bind(('192.168.2.18', 8090))
     s.listen(0)
 
 
@@ -158,7 +163,7 @@ def defineTriangle():
 
 
 def defineLocation():
-    global nameTriangle, TriangleValue, TriangleChoosen, locationTrila, name
+    global count_ex, nameTriangle, TriangleValue, TriangleChoosen, locationTrila, name
     A = 0
     B = 0
     C = 0
@@ -211,6 +216,14 @@ def defineLocation():
     else:
         locationTrila[1] = (A * F - D * C) / (2 * A * E - 2 * D * B)
         locationTrila[0] = (C - 2 * B * locationTrila[1]) / (2 * A)
+    x = datetime.datetime.now()
+    if count_ex <= 50:
+        worksheet.write('C'+str(count_ex), locationTrila[1])
+        worksheet.write('B'+str(count_ex), locationTrila[0])
+        worksheet.write('A'+str(count_ex), str(x))
+        count_ex += 1
+    elif count_ex == 51:
+        workbook.close()
     print('Location: ' + str(locationTrila))
 
 

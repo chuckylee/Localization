@@ -1,7 +1,8 @@
 {
   "name": "sampleApp",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

@@ -101,6 +101,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="com.pylonproducts.wifiwizard" spec="~0.2.11" />
     <plugin name="wifiwizard2" spec="git+https://github.com/tripflex/wifiwizard2.git" />
 </widget>
