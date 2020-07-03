@@ -2,16 +2,18 @@
 #include "WiFi.h"
 //const char* ssid = "DH iMac";
 //const char* password = "12345678";
-//const char* ssid = "UTS_709_IoT_2";
-//const char* password = "uts709iot";
+const char* ssid = "UTS_709_IoT_2";
+const char* password = "uts709iot";
 //const char* ssid = "Le Duc Thanh";
 //const char* password = "01213601997";
 //const char* ssid = "Finita CAFE";
 //const char* password = "chanhdaxay";
-const char* ssid = "NNG";
-const char* password = "ITSolutions&More";
+//const char* ssid = "NNG";
+//const char* password = "ITSolutions&More";
+//const char* ssid = "ESP32-1";
+//const char* password = "uts709iot";
 const uint16_t port = 8090;
-const char * host = "192.168.99.123";
+const char * host = "192.168.2.12";
 String dataValue;
 
 WiFiClient client;

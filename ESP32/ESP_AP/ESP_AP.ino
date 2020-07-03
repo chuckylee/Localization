@@ -1,7 +1,7 @@
 #include "WiFi.h"
 #define LED0 23
 #define LED1 22
-const char* ssid = "ESP32-1";
+const char* ssid = "ESP32-3";
 const char* password = "123123123";
 WiFiServer server(80);
 
