@@ -329,7 +329,7 @@ def addToFirebase(x, y, count):
 
 def connectSocket():
     global s
-    s.bind(('192.168.1.14', 8090))
+    s.bind(('192.168.99.123', 8090))
     s.listen(0)
 
 
