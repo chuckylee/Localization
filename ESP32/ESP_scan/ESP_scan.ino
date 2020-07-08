@@ -1,20 +1,19 @@
-#include "WebSocketClient.h"
 #include "WiFi.h"
-//const char* ssid = "DH iMac";
-//const char* password = "12345678";
-const char* ssid = "UTS_709_IoT_2";
-const char* password = "uts709iot";
+const char* ssid = "DH iMac";
+const char* password = "12345678";
+//const char* ssid = "UTS_709_IoT_2";
+//const char* password = "uts709iot";
 //const char* ssid = "Le Duc Thanh";
 //const char* password = "01213601997";
 //const char* ssid = "Finita CAFE";
 //const char* password = "chanhdaxay";
 
 const uint16_t port = 8090;
-const char * host = "192.168.2.17";
+const char * host = "192.168.2.21";
 String dataValue;
 
 WiFiClient client;
-WebSocketClient webSocketClient;
+//WebSocketClient webSocketClient;
 
 void setup()
 {
@@ -63,12 +62,17 @@ void loop()
                if (WiFi.SSID(i).equals("ESP32-1") ||  
                       WiFi.SSID(i).equals("ESP32-3") || 
                       WiFi.SSID(i).equals("ESP32-4") || 
-                      WiFi.SSID(i).equals("ESP32-5") ) {
+                      WiFi.SSID(i).equals("ESP32-5") || 
+                      WiFi.SSID(i).equals("Chuckylee") 
+                      ) {
                 Serial.print(WiFi.SSID(i));
                 Serial.print(" (");
                 Serial.print(WiFi.RSSI(i));
                 Serial.print(" )");
-                dataValue = String(WiFi.RSSI(i));
+//                dataValue += String(WiFi.SSID(i));
+//                dataValue += String(" ");
+                dataValue += String(WiFi.RSSI(i));
+                dataValue += String(" ");
               }
         }
         client.print(dataValue);
@@ -81,5 +85,5 @@ void loop()
     
 
     // Wait a bit before scanning again
-    delay(1000);
+    delay(2000);
 }
