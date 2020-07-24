@@ -1,34 +1,26 @@
 [
   {
-    "level": [
-      -57.5
-    ],
+    "level": -55,
     "name": "ESP32-1",
-    "location_x": 13.71,
-    "location_y": 3.82
+    "location_x": 0,
+    "location_y": 3
   },
   {
-    "level": [
-      -56.5
-    ],
+    "level": -55,
     "name": "ESP32-2",
-    "location_x": 10.4,
-    "location_y": 2
+    "location_x": 7,
+    "location_y": 0
   },
   {
     "name": "ESP32-3",
-    "location_x": 10.8,
-    "location_y": 6.8,
-    "level": [
-      -58.5
-    ]
+    "location_x": 7,
+    "location_y": 6,
+    "level": -55
   },
   {
-    "level": [
-      -55.5
-    ],
+    "level": -55,
     "name": "ESP32-4",
-    "location_x": 3.8,
-    "location_y": 3.92
+    "location_x": 15,
+    "location_y": 3
   }
 ]

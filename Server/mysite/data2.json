@@ -1,0 +1,26 @@
+[
+    {
+      "level": -50,
+      "name": "Node1",
+      "location_x": 0,
+      "location_y": 0
+    },
+    {
+      "level": -50,
+      "name": "Node2",
+      "location_x": 10,
+      "location_y": 0
+    },
+    {
+      "name": "Node3",
+      "location_x": 5,
+      "location_y": 6,
+      "level": -50
+    },
+    {
+      "name": "Node4",
+      "location_x": 10,
+      "location_y": 6,
+      "level": -50
+    }
+  ]

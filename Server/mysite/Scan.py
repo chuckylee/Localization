@@ -7,17 +7,22 @@ import math
 # define variance
 NameESP = []
 RSSI = []
-checkRSSI = []
+maxRSSI = []
+NameClient = ["client1","client2","client3"]
 distanceValue = []
 TriangleValue = []
 TriangleChoosen = 0
 locationTrila = [0, 0]
-count = 0
-nameTriangle = [['ESP32-1', 'ESP32-2', 'ESP32-3'],
-                ['ESP32-2', 'ESP32-3', 'ESP32-4']]
+count = 1
+workbook = xlsxwriter.Workbook('6_6.xlsx')
+worksheet = workbook.add_worksheet()
+worksheet.write('A'+str(count), "client1")
+worksheet.write('B'+str(count), "client2")
+worksheet.write('C'+str(count), "client3")
+
 # ----------------------
 parser = argparse.ArgumentParser(description = "This is the server for the multithreaded socket demo!")
-parser.add_argument('--host', metavar = 'host', type = str, nargs = '?', default = '192.168.2.16')
+parser.add_argument('--host', metavar = 'host', type = str, nargs = '?', default = '172.20.10.2')
 parser.add_argument('--port', metavar = 'port', type = int, nargs = '?', default = 8090)
 args = parser.parse_args()
 
@@ -48,58 +53,65 @@ def on_new_client(client, connection):
     port = connection[1]
     print(f"THe new connection was made from IP: {ip}, and port: {port}!")
     while True:
-        msg = client.recv(2000)
-        configData(msg)
-        # isCalculate()
-        # clearData()
-        
+        msg = client.recv(20000)
+        print(msg.decode())
+        if len(msg) < 100:
+            configData(json.loads(msg))
+            clear()
     print(f"The client from ip: {ip}, and port: {port}, has gracefully diconnected!")
     client.close()
 
 def database():
-    global NameESP, RSSI, checkRSSI, nameTriangle, TriangleValue
-    with open('data.json') as json_file:
+    global NameESP, RSSI,  nameTriangle, TriangleValue, maxRSSI, NameClient
+    with open('data2.json') as json_file:
             data = json.load(json_file)
             for y in data:
                 NameESP.append(y['name'])
                 RSSI.append(0)
-                checkRSSI.append([])
+                maxRSSI.append([])
                 distanceValue.append(0)
-
-    # print(NameESP)
-    # print(RSSI)
-
-def configData(string):
-    global NameESP, RSSI, checkRSSI
-    data = []
-    s = string.decode()
-    value = ""
-    for x in range(len(s)):
-        if s[x] != " ":
-            value += s[x]
-        else:
-            data.append(value)
-            value = ""
-
-    for x in range(len(NameESP)):
-        if data[0] == NameESP[x]:
-            RSSI[x] = data[1]
-            break
-
-    for x in range(len(RSSI)):
-        if RSSI[x] != 0:
-            checkRSSI[x].append(RSSI[x])
-            #shiftData()
-
+    for x in range(len(maxRSSI)):
+        for y in range(len(NameClient)):
+            maxRSSI[x].append(-100)
     print(NameESP)
     print(RSSI)
-    #print(checkRSSI)
+    print(maxRSSI)
+
+def configData(string):
+    global NameESP, RSSI, count,maxRSSI
+    count += 1
+    for name,value in string[1].items():
+        for x in range(len(NameESP)):
+            if name == NameESP[x]:
+                for y in range(len(NameClient)):
+                    if string[0] == NameClient[y]:
+                        maxRSSI[x][y] = value
+                        break
+                RSSI[x] = max(maxRSSI[x])
+                break
+    print(count)
+    print(NameESP)
+    print(RSSI)
+    print(maxRSSI)
+    saveExcel()
     print("-------------------")
 
+def saveExcel():
+    global count, maxRSSI, RSSI,worksheet,workbook
+    if count < 20000:
+        worksheet.write('A'+str(count), maxRSSI[0][0])
+        worksheet.write('B'+str(count), maxRSSI[0][1])
+        worksheet.write('C'+str(count), maxRSSI[0][2])
+        worksheet.write('E'+str(count), RSSI[0])
+    elif count == 20000:
+        workbook.close()
 
+def clear():
+    global RSSI
+    for x in range(len(RSSI)):
+        RSSI[x] = -100
 
 
 if __name__ == "__main__":
     database()
     connect_socket()
-    
