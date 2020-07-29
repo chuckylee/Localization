@@ -34,7 +34,7 @@ class ScanDelegate(DefaultDelegate):
 
 def getDatabase():
     global database
-    with open('data.json') as json_file:
+    with open('database.json') as json_file:
         database = json.load(json_file)
 
 def configData(devAddr, devRssi):
@@ -129,7 +129,7 @@ def caculatorRSS():
 
 def calculatorD():
     global addr, RSSfinal, D, DCount
-    with open('data.json') as json_file:
+    with open('database.json') as json_file:
         data = json.load(json_file)
         for i in range(len(data)):
             D.append(0)
@@ -210,7 +210,7 @@ while check:
     calculatorD()
     arrangeD()
     calculatorE()
-    calculatorP(2)
+    calculatorP(5)
     if count_ex == 22:
         print("Add successful")
         print("Continue or Save file json (y/n)?: ")

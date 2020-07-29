@@ -119,7 +119,7 @@ def Input():
 	x = input()
 	print("Enter y: ")
 	y = input()
-	return [int(x),int(y)]
+	return [int(x)*0.4,int(y)*0.4]
 
 def writeToJson(addr, rssi, location):
 	global dataJson
@@ -132,7 +132,7 @@ def writeToJson(addr, rssi, location):
 
 def saveToJson():
 	global dataJson
-	with open('data.json', 'w') as outfile:
+	with open('data5.json', 'w') as outfile:
 		json.dump(dataJson, outfile)
 
 scanner = Scanner().withDelegate(ScanDelegate())
