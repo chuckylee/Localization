@@ -7,7 +7,8 @@ import datetime
 import time 
 import math
 import json
-#--------------------------------------------
+import xlsxwriter
+
 count = 1
 addr = []
 rssi = []
@@ -17,7 +18,11 @@ oRSS = []
 RSS = []
 RSSfinal = []
 dataJson = []
-#--------------------------------------------
+D = []
+DCount = []
+S = []
+ES = 0
+database = []
 class ScanDelegate(DefaultDelegate):
     def handleDiscovery(self, dev, isNewDev, isNewData):
         global count, database
@@ -31,8 +36,18 @@ class ScanDelegate(DefaultDelegate):
             "24:6f:28:24:86:2a" == str(dev.addr):
             print(count, datetime.datetime.now(), dev.addr, dev.rssi)
             configData(dev.addr,dev.rssi)
+            calculatorD()
+            arrangeD()
+            calculatorE()
+            calculatorP(2)
+            cleanData()
             count += 1
         sys.stdout.flush()
+
+def getDatabase():
+    global database
+    with open('data.json') as json_file:
+        database = json.load(json_file)
 
 def configData(devAddr, devRssi):
     global addr,rssi,count
@@ -53,7 +68,7 @@ def configData(devAddr, devRssi):
             rssi[len(addr)-1].append(devRssi)
 
 def cleanData():
-    global addr,rssi, sumRSS, yRSS, oRSS, RSS, RSSfinal
+    global addr,rssi, sumRSS, yRSS, oRSS, RSS, RSSfinal, D, DCount, S, ES
     addr = []
     rssi = []
     sumRSS = []
@@ -61,7 +76,10 @@ def cleanData():
     oRSS = []
     RSS = []
     RSSfinal = []
-
+    D = []
+    DCount = []
+    S = []
+    ES = 0
 
 def caculatorRSS():
     global sumRSS, oRSS, yRSS, RSSfinal, RSS, count, rssi, addr, RSSfinalList 
@@ -119,44 +137,94 @@ def caculatorRSS():
         if oRSS[x] == 0 or len(rssi[x]) == 1:
             RSSfinal[x] = rssi[x][0]
 
-    print(RSSfinal)
+    print("RSSfinal: ",RSSfinal)
 
-def Input():
-	print("Enter x: ")
-	x = input()
-	print("Enter y: ")
-	y = input()
-	return [int(x),int(y)]
+def calculatorD():
+    global addr, RSSfinal, D, DCount
+    with open('data.json') as json_file:
+        data = json.load(json_file)
+        for i in range(len(data)):
+            D.append(0)
+            DCount.append(i)
+            for j in range(len(addr)):
+                for k in range(len(data[i]['addr'])) :
+                    if data[i]['addr'][k] == addr[j]:
+                        # if len(D[i]) == Null:
+                        #     D.append(abs(RSSfinal[j]-data[i]['rssi'][k]))
+                        #     # print(D)
+                        # else:
+                            D[i] = D[i] + abs(RSSfinal[j]-data[i]['rssi'][k])
+                            # print(D)
+    print("D: ",D)
 
-def writeToJson(addr, rssi, location):
-	global dataJson
-	addrJson = []
-	rssiJson = []
-	for x in range(len(addr)):
-		addrJson.append(addr[x])
-		rssiJson.append(RSSfinal[x])
-	dataJson.append({'addr': addrJson, 'location': location, 'rssi': rssiJson})
+def arrangeD():
+    global D, DCount
+    for i in range(len(D)-1):
+        for j in range(i+1,len(D)):
+            if D[i] > D[j]:
+                temp1 = D[i]
+                D[i] = D[j]
+                D[j] = temp1
+                temp2 = DCount[i]
+                DCount[i] = DCount[j]
+                DCount[j] = temp2
+    print("DArrange: ",D)
+    print("DCount: ",DCount)
 
-def saveToJson():
-	global dataJson
-	with open('data.json', 'w') as outfile:
-		json.dump(dataJson, outfile)
+def calculatorE():
+    global S, ES, D
+    S.append(0)
+    for i in range(1,len(D)):
+        S.append(D[0]-D[i])
+        ES = ES + S[i]
+        print("1: ", ES)
+    ES = ES/(len(D) - 1)
+    print("S: ",S)
+    print("ES: ",ES)
 
-scanner = Scanner().withDelegate(ScanDelegate())
+def calculatorP(kNeareast):
+    global D, DCount, database
+    Ptx = 0
+    Pty = 0
+    Pm = 0
+    for i in range(kNeareast):
+        Ptx += (1/D[i])*database[DCount[i]]['location'][0]
+        Pty += (1/D[i])*database[DCount[i]]['location'][1]
+        Pm += 1/D[i]
+    print("Location: ",Ptx/Pm,Pty/Pm)
+    saveExcel(Ptx/Pm,Pty/Pm)
 
-check = True
-while check:
-	scanner.scan(10,passive=True)
-	print("---------------------------------------"+str(check))
-	caculatorRSS()
-	writeToJson(addr, RSSfinal, Input())
-	print("Add successful")
-	print("Continue or Save file json (y/n)?: ")
-	i = input()
-	if str(i) == "y":
-		check = True
-	else:
-		print("Saved successful")
-		saveToJson()
-		check = False
-	cleanData()
+def saveExcel(x,y):
+    def count
+    if count == 1:
+        name = input()
+        workbook = xlsxwriter.Workbook(str(name) + ".xlsx") 
+        worksheet = workbook.add_worksheet()
+        worksheet.write('A'+str(count), x)
+        worksheet.write('B'+str(count), y)
+    elif count > 1 and count < 21:
+        worksheet.write('A'+str(count), x)
+        worksheet.write('B'+str(count), y)
+    else count == 21:
+        print("Save successful")
+        workbook.close()
+
+
+getDatabase()
+# addr = ['0c:61:cf:ab:84:c4','24:6f:28:25:f9:92']
+# RSSfinal = [-47,-50]
+# calculatorD()
+# arrangeD()
+# calculatorE()
+# calculatorP(2)
+# cleanData()
+# addr = ['0c:61:cf:ab:84:c4','24:6f:28:25:f9:92']
+# RSSfinal = [-47,-50]
+# calculatorD()
+# arrangeD()
+# calculatorE()
+# calculatorP(2)
+# with open('data.json') as json_file:
+#     data = json.load(json_file)
+#     for i in range(len(data)):
+#         print(data[i]['addr'][0])
