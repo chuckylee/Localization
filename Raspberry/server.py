@@ -204,6 +204,7 @@ check = True
 while check:
     scanner.scan(1.5,passive=True)
     print("---------------------------------------"+str(count))
+    caculatorRSS()
     calculatorD()
     arrangeD()
     calculatorE()
