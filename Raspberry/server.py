@@ -182,20 +182,22 @@ def calculatorP(kNeareast):
     print("Location: ",Ptx/Pm,Pty/Pm)
     saveExcel(Ptx/Pm,Pty/Pm)
 
+count_ex = 1
 def saveExcel(x,y):
-    global count
-    if count == 1:
+    global count_ex
+    if count_ex == 1:
         name = input()
         workbook = xlsxwriter.Workbook(str(name) + ".xlsx") 
         worksheet = workbook.add_worksheet()
-        worksheet.write('A'+str(count), x)
-        worksheet.write('B'+str(count), y)
-    elif count > 1 and count < 21:
-        worksheet.write('A'+str(count), x)
-        worksheet.write('B'+str(count), y)
-    elif count == 21:
+        worksheet.write('A'+str(count_ex), x)
+        worksheet.write('B'+str(count_ex), y)
+    elif count_ex > 1 and count_ex < 21:
+        worksheet.write('A'+str(count_ex), x)
+        worksheet.write('B'+str(count_ex), y)
+    elif count_ex == 21:
         print("Save successful")
         workbook.close()
+    count_ex += 1
 
 scanner = Scanner().withDelegate(ScanDelegate())
 
@@ -209,15 +211,16 @@ while check:
     arrangeD()
     calculatorE()
     calculatorP(2)
-    print("Add successful")
-    print("Continue or Save file json (y/n)?: ")
-    i = input()
-    if str(i) == "y":
-        check = True
-        count = 1
-    else:
-        print("Saved successful")
-        check = False
+    if count_ex == 22:
+        print("Add successful")
+        print("Continue or Save file json (y/n)?: ")
+        i = input()
+        if str(i) == "y":
+            check = True
+            count_ex = 1
+        else:
+            print("Saved successful")
+            check = False
     cleanData()
 
 # addr = ['0c:61:cf:ab:84:c4','24:6f:28:25:f9:92']
