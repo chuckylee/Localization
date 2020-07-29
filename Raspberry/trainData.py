@@ -21,14 +21,7 @@ dataJson = []
 class ScanDelegate(DefaultDelegate):
     def handleDiscovery(self, dev, isNewDev, isNewData):
         global count, database
-        if "24:6f:28:25:f7:5a" == str(dev.addr) or 
-            "24:6f:28:27:48:6a" == str(dev.addr) or 
-            "24:6f:28:2b:60:32" == str(dev.addr) or 
-            "24:6f:28:24:71:d6" == str(dev.addr) or 
-            "24:6f:28:25:da:b2" == str(dev.addr) or 
-            "24:6f:28:24:81:de" == str(dev.addr) or 
-            "24:6f:28:24:d6:26" == str(dev.addr) or 
-            "24:6f:28:24:86:2a" == str(dev.addr):
+        if "24:6f:28:25:f7:5a" == str(dev.addr) or "24:6f:28:27:48:6a" == str(dev.addr) or "24:6f:28:2b:60:32" == str(dev.addr) or "24:6f:28:24:71:d6" == str(dev.addr) or "24:6f:28:25:da:b2" == str(dev.addr) or "24:6f:28:24:81:de" == str(dev.addr) or "24:6f:28:24:d6:26" == str(dev.addr) or "24:6f:28:24:86:2a" == str(dev.addr):
             print(count, datetime.datetime.now(), dev.addr, dev.rssi)
             configData(dev.addr,dev.rssi)
             count += 1
