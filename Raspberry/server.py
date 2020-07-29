@@ -184,7 +184,7 @@ def calculatorP(kNeareast):
 
 count_ex = 1
 def saveExcel(x,y):
-    global count_ex
+    global count_ex, workbook, worksheet
     if count_ex == 1:
         name = input()
         workbook = xlsxwriter.Workbook(str(name) + ".xlsx") 
