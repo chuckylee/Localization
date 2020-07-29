@@ -29,11 +29,6 @@ class ScanDelegate(DefaultDelegate):
         if "24:6f:28:25:f7:5a" == str(dev.addr) or "24:6f:28:27:48:6a" == str(dev.addr) or "24:6f:28:2b:60:32" == str(dev.addr) or "24:6f:28:24:71:d6" == str(dev.addr) or "24:6f:28:25:da:b2" == str(dev.addr) or "24:6f:28:24:81:de" == str(dev.addr) or "24:6f:28:24:d6:26" == str(dev.addr) or "24:6f:28:24:86:2a" == str(dev.addr):
             print(count, datetime.datetime.now(), dev.addr, dev.rssi)
             configData(dev.addr,dev.rssi)
-            calculatorD()
-            arrangeD()
-            calculatorE()
-            calculatorP(2)
-            cleanData()
             count += 1
         sys.stdout.flush()
 
@@ -202,8 +197,28 @@ def saveExcel(x,y):
         print("Save successful")
         workbook.close()
 
+scanner = Scanner().withDelegate(ScanDelegate())
 
 getDatabase()
+check = True
+while check:
+    scanner.scan(1.5,passive=True)
+    print("---------------------------------------"+str(count))
+    calculatorD()
+    arrangeD()
+    calculatorE()
+    calculatorP(2)
+    print("Add successful")
+    print("Continue or Save file json (y/n)?: ")
+    i = input()
+    if str(i) == "y":
+        check = True
+        count = 1
+    else:
+        print("Saved successful")
+        check = False
+    cleanData()
+
 # addr = ['0c:61:cf:ab:84:c4','24:6f:28:25:f9:92']
 # RSSfinal = [-47,-50]
 # calculatorD()
