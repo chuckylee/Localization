@@ -18,21 +18,12 @@ declare var WifiWizard2: any;
 export class HomePage implements OnInit {
   arrayName: string[] = [];
   arrayBssid: string[] = [];
-  arrayLevel: number[][] = [[], [], [], [], [], [], [], []];
+  arrayLevel: number[][] = [[], [], [], [], [], [], [], [], []];
   sum: number[] = [];
   y: number[] = [];
   o: number[] = [];
-  RSS: number[][] = [[], [], [], [], [], [], [], []];
+  RSS: number[][] = [[], [], [], [], [], [], [], [], []];
   RSSFinal: number[] = [];
-  arr: number[][] = [
-    [-60, -61, -62, -66, -62, -66, -70, -70, -70],
-    [-54, -54, -54, -54, -54],
-    [-90],
-    [-89, -89, -89],
-    [-88, -91],
-    [-89, -89],
-  ];
-
   id = 0;
   count = 0;
   countLevel = 0;
@@ -58,34 +49,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.dataService
-    //   .getList()
-    //   .snapshotChanges()
-    //   .pipe(
-    //     map((changes) =>
-    //       changes.map((c) => ({
-    //         // key: c.payload.doc.id,
-    //         // ...c.payload.doc.data(),
-    //       }))
-    //     )
-    //   )
-    //   .subscribe((datas) => {
-    //     console.log(datas);
-    //   });
-    this.postsCol = this.afs.collection('cities');
-    this.posts = this.postsCol.valueChanges();
-    this.postsCol.snapshotChanges().subscribe((data) => {
-      data.forEach((change) => {
-        if (change.type === 'added') {
-          console.log(change.payload.doc.id);
-          console.log(change.payload.doc.data());
-        }
-      });
-    });
-
-    // this.posts.subscribe((data) => {
-    //   console.log(data);
-    // });
   }
 
   async UpdateDatabaseSuccess() {
@@ -128,7 +91,7 @@ export class HomePage implements OnInit {
       } else if (i === 13) {
         this.addIdea();
       }
-    }, 2000 * i);
+    }, 2500 * i);
   }
 
   // click() {
@@ -146,7 +109,7 @@ export class HomePage implements OnInit {
   // }
   click() {
     this.clearData();
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 14; i++) {
       this.setDelay(i);
     }
   }
@@ -166,14 +129,6 @@ export class HomePage implements OnInit {
   //   }, 5000 * i);
   // }
 
-  setDelay2(i) {
-    setTimeout(() => {
-      this.count++;
-      this.id++;
-      this.getNetworks();
-      // console.log('hi');
-    }, 1000 * i);
-  }
   async getNetworks() {
     this.infoTxt = 'loading...';
     try {
@@ -182,13 +137,15 @@ export class HomePage implements OnInit {
       // tslint:disable-next-line:prefer-const
       for (let item of results) {
         if (
-          !item.SSID.localeCompare('UTS_709_IoT_1') ||
-          !item.SSID.localeCompare('UTS_709_IoT_2') ||
-          !item.SSID.localeCompare('ESP32-1') ||
-          !item.SSID.localeCompare('ESP32-2') ||
-          !item.SSID.localeCompare('ESP32-3') ||
+          !item.SSID.localeCompare('ESP32-9') ||
+          !item.SSID.localeCompare('ESP32-8') ||
+          !item.SSID.localeCompare('ESP32-7') ||
+          !item.SSID.localeCompare('ESP32-6') ||
+          !item.SSID.localeCompare('ESP32-5') ||
           !item.SSID.localeCompare('ESP32-4') ||
-          !item.SSID.localeCompare('ESP32-5')
+          !item.SSID.localeCompare('ESP32-3') ||
+          !item.SSID.localeCompare('ESP32-2') ||
+          !item.SSID.localeCompare('ESP32-1')
         ) {
           // tslint:disable-next-line:prefer-const
           let level = parseInt(item.level);
@@ -336,6 +293,7 @@ export class HomePage implements OnInit {
     this.idea.name = this.arrayName;
     this.idea.bssid = this.arrayBssid;
     this.idea.level = this.RSSFinal;
+    // this.idea.level = this.RSSI;
   }
 
   clearData() {
@@ -344,11 +302,11 @@ export class HomePage implements OnInit {
     this.countLevel = 0;
     this.arrayName = [];
     this.arrayBssid = [];
-    this.arrayLevel = [[], [], [], [], [], [], [], []];
+    this.arrayLevel = [[], [], [], [], [], [], [], [], []];
     this.sum = [];
     this.y = [];
     this.o = [];
-    this.RSS = [[], [], [], [], [], [], [], []];
+    this.RSS = [[], [], [], [], [], [], [], [], []];
     this.RSSFinal = [];
     console.log('CLEAR DONE');
   }

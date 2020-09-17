@@ -4,7 +4,7 @@ import datetime
 workbook = xlsxwriter.Workbook('Ihone - 2.xlsx')
 worksheet = workbook.add_worksheet()
 s = socket.socket()
-s.bind(('192.168.2.16', 8090))
+s.bind(('192.168.2.13', 8090))
 s.listen(0)
 count = 1
 data = ""

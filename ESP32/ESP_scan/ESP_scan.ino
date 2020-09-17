@@ -1,15 +1,15 @@
 #include "WiFi.h"
-const char* ssid = "DH iMac";
-const char* password = "12345678";
-//const char* ssid = "UTS_709_IoT_2";
-//const char* password = "uts709iot";
+//const char* ssid = "DH iMac";
+//const char* password = "12345678";
+const char* ssid = "UTS_709_IoT_2";
+const char* password = "uts709iot";
 //const char* ssid = "Le Duc Thanh";
 //const char* password = "01213601997";
 //const char* ssid = "Finita CAFE";
 //const char* password = "chanhdaxay";
 
 const uint16_t port = 8090;
-const char * host = "192.168.2.21";
+const char * host = "192.168.2.13";
 String dataValue;
 
 WiFiClient client;
@@ -62,8 +62,8 @@ void loop()
                if (WiFi.SSID(i).equals("ESP32-1") ||  
                       WiFi.SSID(i).equals("ESP32-3") || 
                       WiFi.SSID(i).equals("ESP32-4") || 
-                      WiFi.SSID(i).equals("ESP32-5") || 
-                      WiFi.SSID(i).equals("Chuckylee") 
+                      WiFi.SSID(i).equals("ESP32-5")  
+//                      WiFi.SSID(i).equals("Chuckylee") 
                       ) {
                 Serial.print(WiFi.SSID(i));
                 Serial.print(" (");

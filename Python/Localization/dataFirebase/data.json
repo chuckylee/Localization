@@ -1,0 +1,1031 @@
+[
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:05:49 GMT+0700 (Indochina Time)",
+        "Location": [
+            "nan",
+            "nan"
+        ],
+        "kNearest": [],
+        "APValue": {
+            "AP9": 0,
+            "AP1": 0,
+            "AP2": 0,
+            "AP3": 0,
+            "AP4": 0,
+            "AP5": 0,
+            "AP6": 0,
+            "AP7": 0,
+            "AP8": 0
+        },
+        "timeEnd": 1599116749040
+    },
+    {
+        "timeEnd": 1599116836592,
+        "APValue": {
+            "AP1": -74,
+            "AP2": -66,
+            "AP3": -59,
+            "AP4": -58,
+            "AP5": -55,
+            "AP6": -51,
+            "AP7": -66,
+            "AP8": -68,
+            "AP9": -70
+        },
+        "Position": [],
+        "kNearest": [],
+        "Location": [
+            16.94890035666543,
+            4.08889453075013
+        ],
+        "dateTime": "Thu Sep 03 2020 14:07:16 GMT+0700 (Indochina Time)"
+    },
+    {
+        "dateTime": "Thu Sep 03 2020 14:06:56 GMT+0700 (Indochina Time)",
+        "Location": [
+            12.964616335346845,
+            9.600508585776875
+        ],
+        "kNearest": [],
+        "timeEnd": 1599116816690,
+        "APValue": {
+            "AP1": -71,
+            "AP2": -69,
+            "AP3": -62,
+            "AP4": -61,
+            "AP5": -63,
+            "AP6": -61,
+            "AP7": -58,
+            "AP8": -53,
+            "AP9": -70
+        },
+        "Position": []
+    },
+    {
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:21 GMT+0700 (Indochina Time)",
+        "Location": [
+            8.118890207264569,
+            3.472870352180726
+        ],
+        "timeEnd": 1599116781599,
+        "APValue": {
+            "AP1": -67,
+            "AP2": -51,
+            "AP3": -63,
+            "AP4": -57.5,
+            "AP5": -57.5,
+            "AP6": -55,
+            "AP7": -69,
+            "AP8": -65,
+            "AP9": -54
+        },
+        "Position": []
+    },
+    {
+        "Location": [
+            18.38702284831372,
+            3.7418527962475734
+        ],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:26 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116846616,
+        "APValue": {
+            "AP7": -74,
+            "AP8": -68,
+            "AP9": -76,
+            "AP1": -76,
+            "AP2": -70,
+            "AP3": -48,
+            "AP4": -56,
+            "AP5": -55,
+            "AP6": -51
+        },
+        "Position": []
+    },
+    {
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:19 GMT+0700 (Indochina Time)",
+        "Location": [
+            7.946632370063759,
+            3.6192016908922597
+        ],
+        "APValue": {
+            "AP1": -67,
+            "AP2": -52,
+            "AP3": -59,
+            "AP4": -58,
+            "AP5": -59,
+            "AP6": -55,
+            "AP7": -69,
+            "AP8": -63,
+            "AP9": -54
+        },
+        "timeEnd": 1599116779141,
+        "Position": []
+    },
+    {
+        "APValue": {
+            "AP9": -54,
+            "AP1": -67,
+            "AP2": -50,
+            "AP3": -72,
+            "AP4": -55,
+            "AP5": -56,
+            "AP6": -55,
+            "AP7": -68,
+            "AP8": -68
+        },
+        "timeEnd": 1599116789090,
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:29 GMT+0700 (Indochina Time)",
+        "Location": [
+            8.538060428942067,
+            3.6257226335173574
+        ],
+        "kNearest": []
+    },
+    {
+        "timeEnd": 1599116771572,
+        "APValue": {
+            "AP3": -55.5,
+            "AP4": -59.5,
+            "AP5": -59,
+            "AP6": -56,
+            "AP7": -68.5,
+            "AP8": -69,
+            "AP9": -46,
+            "AP1": -69,
+            "AP2": -58
+        },
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:11 GMT+0700 (Indochina Time)",
+        "Location": [
+            7.883999067186419,
+            3.570913246536276
+        ],
+        "kNearest": []
+    },
+    {
+        "Position": [],
+        "kNearest": [],
+        "Location": [
+            7.114565970638983,
+            3.8324656892238695
+        ],
+        "dateTime": "Thu Sep 03 2020 14:06:06 GMT+0700 (Indochina Time)",
+        "APValue": {
+            "AP1": -62,
+            "AP2": -50,
+            "AP3": -53,
+            "AP4": -60,
+            "AP5": -61,
+            "AP6": -56,
+            "AP7": -69,
+            "AP8": -68,
+            "AP9": -47
+        },
+        "timeEnd": 1599116766622
+    },
+    {
+        "APValue": {
+            "AP1": -65.5,
+            "AP2": -54.5,
+            "AP3": -54,
+            "AP4": -59.5,
+            "AP5": -60,
+            "AP6": -55,
+            "AP7": -67.5,
+            "AP8": -69,
+            "AP9": -46.5
+        },
+        "timeEnd": 1599116769095,
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:09 GMT+0700 (Indochina Time)",
+        "Location": [
+            6.965734425747292,
+            3.586547219626131
+        ]
+    },
+    {
+        "APValue": {
+            "AP6": -55,
+            "AP7": -68.5,
+            "AP8": -67.5,
+            "AP9": -54,
+            "AP1": -67,
+            "AP2": -50,
+            "AP3": -67,
+            "AP4": -56,
+            "AP5": -57.5
+        },
+        "timeEnd": 1599116786593,
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:26 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            8.551606020716909,
+            3.308244887545613
+        ]
+    },
+    {
+        "timeEnd": 1599116866600,
+        "APValue": {
+            "AP1": -69.5,
+            "AP2": -71,
+            "AP3": -65,
+            "AP4": -50.5,
+            "AP5": -54,
+            "AP6": -59,
+            "AP7": -74.5,
+            "AP8": -65,
+            "AP9": -70.5
+        },
+        "Position": [],
+        "kNearest": [],
+        "Location": [
+            21.569685065095413,
+            3.8830915361487426
+        ],
+        "dateTime": "Thu Sep 03 2020 14:07:46 GMT+0700 (Indochina Time)"
+    },
+    {
+        "Position": [],
+        "Location": [
+            13.235710897480518,
+            3.733470752716887
+        ],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:44 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116804086,
+        "APValue": {
+            "AP1": -71,
+            "AP2": -64,
+            "AP3": -63,
+            "AP4": -55,
+            "AP5": -60,
+            "AP6": -51,
+            "AP7": -65,
+            "AP8": -58,
+            "AP9": -58
+        }
+    },
+    {
+        "APValue": {
+            "AP1": -77,
+            "AP2": -66,
+            "AP3": -60.5,
+            "AP4": -67,
+            "AP5": -65,
+            "AP6": -61,
+            "AP7": -48.5,
+            "AP8": -54.5,
+            "AP9": -73
+        },
+        "timeEnd": 1599116824102,
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:04 GMT+0700 (Indochina Time)",
+        "Location": [
+            12.905317103192944,
+            9.616934840759908
+        ]
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:49 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            13.520488208726318,
+            4.339235235210492
+        ],
+        "APValue": {
+            "AP1": -68,
+            "AP2": -64,
+            "AP3": -59.5,
+            "AP4": -54.5,
+            "AP5": -53.5,
+            "AP6": -52,
+            "AP7": -56,
+            "AP8": -53,
+            "AP9": -58
+        },
+        "timeEnd": 1599116809082
+    },
+    {
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:54 GMT+0700 (Indochina Time)",
+        "Location": [
+            14.833535731057344,
+            5.257214488169876
+        ],
+        "timeEnd": 1599116814084,
+        "APValue": {
+            "AP1": -67,
+            "AP2": -69,
+            "AP3": -58,
+            "AP4": -52,
+            "AP5": -50,
+            "AP6": -54,
+            "AP7": -55,
+            "AP8": -52,
+            "AP9": -76
+        },
+        "Position": []
+    },
+    {
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:06 GMT+0700 (Indochina Time)",
+        "Location": [
+            12.807821698535719,
+            9.744164923065938
+        ],
+        "timeEnd": 1599116826605,
+        "APValue": {
+            "AP4": -62,
+            "AP5": -65,
+            "AP6": -60,
+            "AP7": -48.5,
+            "AP8": -53.67,
+            "AP9": -69,
+            "AP1": -73,
+            "AP2": -65,
+            "AP3": -60.5
+        }
+    },
+    {
+        "APValue": {
+            "AP4": -68,
+            "AP5": -58,
+            "AP6": -59,
+            "AP7": -64,
+            "AP8": -69,
+            "AP9": -48,
+            "AP1": -55,
+            "AP2": -55,
+            "AP3": -59
+        },
+        "timeEnd": 1599116761666,
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:01 GMT+0700 (Indochina Time)",
+        "Location": [
+            5.209359585998822,
+            3.9145014256100477
+        ],
+        "kNearest": []
+    },
+    {
+        "Location": [
+            19.05743853036669,
+            3.541062561407549
+        ],
+        "dateTime": "Thu Sep 03 2020 14:07:29 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "APValue": {
+            "AP9": -67,
+            "AP1": -76,
+            "AP2": -71,
+            "AP3": -55,
+            "AP4": -52,
+            "AP5": -54,
+            "AP6": -55,
+            "AP7": -71,
+            "AP8": -68
+        },
+        "timeEnd": 1599116849096,
+        "Position": []
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:04 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            5.966905421331961,
+            3.6488327309602244
+        ],
+        "timeEnd": 1599116764082,
+        "APValue": {
+            "AP7": -64,
+            "AP8": -64,
+            "AP9": -50,
+            "AP1": -58,
+            "AP2": -53,
+            "AP3": -59,
+            "AP4": -68,
+            "AP5": -61,
+            "AP6": -55
+        }
+    },
+    {
+        "Position": [],
+        "Location": [
+            8.570533212821129,
+            3.517918201136873
+        ],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:16 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116776569,
+        "APValue": {
+            "AP6": -55,
+            "AP7": -69,
+            "AP8": -68,
+            "AP9": -46,
+            "AP1": -69,
+            "AP2": -60,
+            "AP3": -53,
+            "AP4": -59,
+            "AP5": -59
+        }
+    },
+    {
+        "APValue": {
+            "AP1": -75,
+            "AP2": -59,
+            "AP3": -56,
+            "AP4": -52,
+            "AP5": -52.5,
+            "AP6": -53,
+            "AP7": -58.5,
+            "AP8": -66,
+            "AP9": -55.5
+        },
+        "timeEnd": 1599116796606,
+        "Position": [],
+        "kNearest": [],
+        "Location": [
+            12.403276089045598,
+            3.3046525135968934
+        ],
+        "dateTime": "Thu Sep 03 2020 14:06:36 GMT+0700 (Indochina Time)"
+    },
+    {
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:39 GMT+0700 (Indochina Time)",
+        "Location": [
+            12.57889011177389,
+            3.6574300919502942
+        ],
+        "timeEnd": 1599116799137,
+        "APValue": {
+            "AP1": -76.5,
+            "AP2": -59,
+            "AP3": -56,
+            "AP4": -51.5,
+            "AP5": -54,
+            "AP6": -53.5,
+            "AP7": -58.5,
+            "AP8": -65,
+            "AP9": -62.33
+        }
+    },
+    {
+        "Position": [],
+        "Location": [
+            8.166992274872662,
+            3.558503946420953
+        ],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:24 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116784117,
+        "APValue": {
+            "AP1": -67,
+            "AP2": -50,
+            "AP3": -67,
+            "AP4": -57.5,
+            "AP5": -59,
+            "AP6": -55,
+            "AP7": -69,
+            "AP8": -67.5,
+            "AP9": -54
+        }
+    },
+    {
+        "timeEnd": 1599116859109,
+        "APValue": {
+            "AP1": -73,
+            "AP2": -70,
+            "AP3": -59,
+            "AP4": -54,
+            "AP5": -57,
+            "AP6": -59,
+            "AP7": -74,
+            "AP8": -70,
+            "AP9": -73
+        },
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:07:39 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            20.77283415050017,
+            4.155914281337284
+        ]
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:07:49 GMT+0700 (Indochina Time)",
+        "Location": [
+            21.038267407817525,
+            3.8340155998510097
+        ],
+        "kNearest": [],
+        "timeEnd": 1599116869107,
+        "APValue": {
+            "AP7": -74.5,
+            "AP8": -65,
+            "AP9": -70.5,
+            "AP1": -71.5,
+            "AP2": -71,
+            "AP3": -65.5,
+            "AP4": -52.5,
+            "AP5": -56,
+            "AP6": -57.5
+        }
+    },
+    {
+        "kNearest": [],
+        "Location": [
+            19.02804809206775,
+            3.710832254244154
+        ],
+        "dateTime": "Thu Sep 03 2020 14:07:24 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116844108,
+        "APValue": {
+            "AP1": -79,
+            "AP2": -73,
+            "AP3": -52,
+            "AP4": -62,
+            "AP5": -50,
+            "AP6": -52,
+            "AP7": -74,
+            "AP8": -69,
+            "AP9": -72
+        },
+        "Position": []
+    },
+    {
+        "Position": [],
+        "Location": [
+            12.843938888701821,
+            5.7195632260398845
+        ],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:09 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116829102,
+        "APValue": {
+            "AP1": -68,
+            "AP2": -69,
+            "AP3": -59,
+            "AP4": -57,
+            "AP5": -64,
+            "AP6": -56,
+            "AP7": -56,
+            "AP8": -53,
+            "AP9": -63
+        }
+    },
+    {
+        "dateTime": "Thu Sep 03 2020 14:06:59 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            13.180103185009987,
+            9.665881545569295
+        ],
+        "timeEnd": 1599116819111,
+        "APValue": {
+            "AP1": -77,
+            "AP2": -66,
+            "AP3": -71,
+            "AP4": -69,
+            "AP5": -65,
+            "AP6": -61,
+            "AP7": -59,
+            "AP8": -49,
+            "AP9": -73
+        },
+        "Position": []
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:07:19 GMT+0700 (Indochina Time)",
+        "Location": [
+            18.23443330721874,
+            4.259618108504494
+        ],
+        "kNearest": [],
+        "APValue": {
+            "AP1": -76.5,
+            "AP2": -69,
+            "AP3": -56,
+            "AP4": -60,
+            "AP5": -53,
+            "AP6": -51.5,
+            "AP7": -69.5,
+            "AP8": -68,
+            "AP9": -72
+        },
+        "timeEnd": 1599116839139
+    },
+    {
+        "timeEnd": 1599116841585,
+        "APValue": {
+            "AP1": -79,
+            "AP2": -72.5,
+            "AP3": -52.5,
+            "AP4": -62,
+            "AP5": -50.5,
+            "AP6": -52,
+            "AP7": -73.5,
+            "AP8": -68,
+            "AP9": -70.5
+        },
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:21 GMT+0700 (Indochina Time)",
+        "Location": [
+            18.434151775992632,
+            3.558677626105618
+        ]
+    },
+    {
+        "APValue": {
+            "AP9": -58,
+            "AP1": -69.5,
+            "AP2": -64,
+            "AP3": -61.5,
+            "AP4": -54.5,
+            "AP5": -56.5,
+            "AP6": -52,
+            "AP7": -61,
+            "AP8": -55.5
+        },
+        "timeEnd": 1599116806585,
+        "Position": [],
+        "kNearest": [],
+        "Location": [
+            13.237485860512882,
+            3.9949359925880357
+        ],
+        "dateTime": "Thu Sep 03 2020 14:06:46 GMT+0700 (Indochina Time)"
+    },
+    {
+        "Position": [],
+        "Location": [
+            4.922747276754325,
+            4.6522338647587
+        ],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:05:54 GMT+0700 (Indochina Time)",
+        "APValue": {
+            "AP6": -61,
+            "AP7": -69.5,
+            "AP8": -68.5,
+            "AP9": -47.5,
+            "AP1": -56.5,
+            "AP2": -61.5,
+            "AP3": -59,
+            "AP4": -65.5,
+            "AP5": -58
+        },
+        "timeEnd": 1599116754211
+    },
+    {
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:44 GMT+0700 (Indochina Time)",
+        "Location": [
+            20.837203244496298,
+            4.196982976002647
+        ],
+        "timeEnd": 1599116864109,
+        "APValue": {
+            "AP1": -69.5,
+            "AP2": -70,
+            "AP3": -62,
+            "AP4": -50.5,
+            "AP5": -54,
+            "AP6": -57,
+            "AP7": -72,
+            "AP8": -67.5,
+            "AP9": -69.5
+        }
+    },
+    {
+        "APValue": {
+            "AP1": -67,
+            "AP2": -54,
+            "AP3": -64,
+            "AP4": -52,
+            "AP5": -52,
+            "AP6": -53,
+            "AP7": -69,
+            "AP8": -64,
+            "AP9": -53
+        },
+        "timeEnd": 1599116791600,
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:06:31 GMT+0700 (Indochina Time)",
+        "Location": [
+            9.62511911491662,
+            3.670648444569061
+        ]
+    },
+    {
+        "Location": [
+            4.60027412846788,
+            5.004365864280704
+        ],
+        "dateTime": "Thu Sep 03 2020 14:05:51 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "APValue": {
+            "AP8": -70,
+            "AP9": -47,
+            "AP1": -57,
+            "AP2": -63,
+            "AP3": -61,
+            "AP4": -65,
+            "AP5": -58,
+            "AP6": -61,
+            "AP7": -70
+        },
+        "timeEnd": 1599116751641,
+        "Position": []
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:05:59 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            4.738602963882273,
+            4.397920239258884
+        ],
+        "APValue": {
+            "AP7": -68.5,
+            "AP8": -69.5,
+            "AP9": -48,
+            "AP1": -56.5,
+            "AP2": -59.5,
+            "AP3": -58,
+            "AP4": -66,
+            "AP5": -58,
+            "AP6": -60.5
+        },
+        "timeEnd": 1599116759136
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:51 GMT+0700 (Indochina Time)",
+        "Location": [
+            13.769992371025857,
+            3.894523183568435
+        ],
+        "kNearest": [],
+        "timeEnd": 1599116811576,
+        "APValue": {
+            "AP8": -53,
+            "AP9": -64,
+            "AP1": -68,
+            "AP2": -66,
+            "AP3": -59.5,
+            "AP4": -54.5,
+            "AP5": -53.5,
+            "AP6": -52,
+            "AP7": -56
+        }
+    },
+    {
+        "timeEnd": 1599116756670,
+        "APValue": {
+            "AP1": -57,
+            "AP2": -59.5,
+            "AP3": -57,
+            "AP4": -66,
+            "AP5": -58,
+            "AP6": -61,
+            "AP7": -69,
+            "AP8": -69.5,
+            "AP9": -48
+        },
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:05:56 GMT+0700 (Indochina Time)",
+        "Location": [
+            4.748897986239995,
+            4.6590463129273765
+        ]
+    },
+    {
+        "dateTime": "Thu Sep 03 2020 14:07:14 GMT+0700 (Indochina Time)",
+        "Location": [
+            13.045980574942782,
+            3.7127419863115514
+        ],
+        "kNearest": [],
+        "APValue": {
+            "AP1": -66,
+            "AP2": -61,
+            "AP3": -51,
+            "AP4": -57,
+            "AP5": -58,
+            "AP6": -53,
+            "AP7": -65,
+            "AP8": -64,
+            "AP9": -63
+        },
+        "timeEnd": 1599116834075,
+        "Position": []
+    },
+    {
+        "kNearest": [],
+        "Location": [
+            19.592425268437452,
+            3.7654728065760934
+        ],
+        "dateTime": "Thu Sep 03 2020 14:07:31 GMT+0700 (Indochina Time)",
+        "timeEnd": 1599116851631,
+        "APValue": {
+            "AP1": -74.5,
+            "AP2": -71.5,
+            "AP3": -55,
+            "AP4": -50,
+            "AP5": -58,
+            "AP6": -55,
+            "AP7": -71.5,
+            "AP8": -70,
+            "AP9": -71.5
+        },
+        "Position": []
+    },
+    {
+        "Position": [],
+        "kNearest": [],
+        "dateTime": "Thu Sep 03 2020 14:07:01 GMT+0700 (Indochina Time)",
+        "Location": [
+            12.67557036901598,
+            10.206300596867788
+        ],
+        "APValue": {
+            "AP1": -77,
+            "AP2": -66,
+            "AP3": -66.5,
+            "AP4": -67,
+            "AP5": -65,
+            "AP6": -61,
+            "AP7": -54,
+            "AP8": -51.5,
+            "AP9": -73
+        },
+        "timeEnd": 1599116821645
+    },
+    {
+        "dateTime": "Thu Sep 03 2020 14:06:34 GMT+0700 (Indochina Time)",
+        "Location": [
+            11.687718129830369,
+            3.725630111226368
+        ],
+        "kNearest": [],
+        "timeEnd": 1599116794097,
+        "APValue": {
+            "AP9": -55.5,
+            "AP1": -71,
+            "AP2": -56.5,
+            "AP3": -60,
+            "AP4": -52,
+            "AP5": -52.5,
+            "AP6": -51,
+            "AP7": -64,
+            "AP8": -66
+        },
+        "Position": []
+    },
+    {
+        "Position": [],
+        "Location": [
+            7.752369337675305,
+            3.423254479690742
+        ],
+        "dateTime": "Thu Sep 03 2020 14:06:14 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "APValue": {
+            "AP9": -46,
+            "AP1": -69,
+            "AP2": -58,
+            "AP3": -54.5,
+            "AP4": -59.5,
+            "AP5": -59,
+            "AP6": -56,
+            "AP7": -68.5,
+            "AP8": -68.5
+        },
+        "timeEnd": 1599116774106
+    },
+    {
+        "dateTime": "Thu Sep 03 2020 14:07:34 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            19.965478350240005,
+            4.217221523178542
+        ],
+        "timeEnd": 1599116854082,
+        "APValue": {
+            "AP1": -72,
+            "AP2": -71,
+            "AP3": -55,
+            "AP4": -48,
+            "AP5": -61.5,
+            "AP6": -55,
+            "AP7": -72,
+            "AP8": -70,
+            "AP9": -76
+        },
+        "Position": []
+    },
+    {
+        "APValue": {
+            "AP7": -70,
+            "AP8": -70,
+            "AP9": -78,
+            "AP1": -71,
+            "AP2": -71,
+            "AP3": -56,
+            "AP4": -50,
+            "AP5": -57,
+            "AP6": -59
+        },
+        "timeEnd": 1599116856595,
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:07:36 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            20.42583372663081,
+            4.319106205458826
+        ]
+    },
+    {
+        "dateTime": "Thu Sep 03 2020 14:07:11 GMT+0700 (Indochina Time)",
+        "Location": [
+            7.819353679258646,
+            6.78599398563141
+        ],
+        "kNearest": [],
+        "timeEnd": 1599116831619,
+        "APValue": {
+            "AP2": -53,
+            "AP3": -64,
+            "AP4": -61,
+            "AP5": -72,
+            "AP6": -61,
+            "AP7": -60,
+            "AP8": -57,
+            "AP9": -55,
+            "AP1": -60
+        },
+        "Position": []
+    },
+    {
+        "timeEnd": 1599116861590,
+        "APValue": {
+            "AP1": -69,
+            "AP2": -69,
+            "AP3": -59,
+            "AP4": -50,
+            "AP5": -54,
+            "AP6": -55,
+            "AP7": -70,
+            "AP8": -70,
+            "AP9": -71
+        },
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:07:41 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            19.816381990172236,
+            4.625841702223472
+        ]
+    },
+    {
+        "Position": [],
+        "dateTime": "Thu Sep 03 2020 14:06:41 GMT+0700 (Indochina Time)",
+        "kNearest": [],
+        "Location": [
+            13.00642823668825,
+            4.269299285021375
+        ],
+        "timeEnd": 1599116801604,
+        "APValue": {
+            "AP1": -71,
+            "AP2": -60,
+            "AP3": -54,
+            "AP4": -52,
+            "AP5": -53,
+            "AP6": -49,
+            "AP7": -55,
+            "AP8": -63,
+            "AP9": -62
+        }
+    }
+]

@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyC2ECWTQRW3HHDH0_lvX180molFhz7Iglo',
-    authDomain: 'newtraingdata.firebaseapp.com',
-    databaseURL: 'https://newtraingdata.firebaseio.com',
-    projectId: 'newtraingdata',
-    storageBucket: 'newtraingdata.appspot.com',
-    messagingSenderId: '163551995676',
-    appId: '1:163551995676:web:8cae1655741f0eb6587cd9',
-    measurementId: 'G-GTCJ1Z4XG3',
+    apiKey: "AIzaSyAZuew11uvuYuI-vop4Wwe5TuG6V53_vLM",
+    authDomain: "datatablet-db599.firebaseapp.com",
+    databaseURL: "https://datatablet-db599.firebaseio.com",
+    projectId: "datatablet-db599",
+    storageBucket: "datatablet-db599.appspot.com",
+    messagingSenderId: "181669414558",
+    appId: "1:181669414558:web:37d33b1bc930d543b0dd8f",
+    measurementId: "G-YCNWEESB29"
   },
 };
 

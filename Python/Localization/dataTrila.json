@@ -1,0 +1,20 @@
+[
+    {
+        "level": -40,
+        "name": "ESP32-2",
+        "location_x": 11,
+        "location_y": 0
+    },
+    {
+        "level": -40,
+        "name": "ESP32-1",
+        "location_x": 3,
+        "location_y": 0
+    },
+    {
+        "name": "ESP32-3",
+        "location_x": 20.2,
+        "location_y": 0,
+        "level": -40
+    }
+]
